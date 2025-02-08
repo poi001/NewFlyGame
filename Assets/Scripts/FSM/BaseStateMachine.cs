@@ -1,18 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class BaseStateMachine : MonoBehaviour
+public interface IState
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Enter();
+    public void Exit();
+    public void Update();
+    public void PhysicsUpdate();
+}
+
+public class BaseStateMachine
+{
+    public IState currentState;
+
+    public void ChanageState(IState state)
     {
-        
+        currentState?.Exit();
+        currentState = state;
+        currentState?.Enter();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        currentState?.Update();
     }
+
+    public void PhysicsUpdate()
+    {
+        currentState?.PhysicsUpdate();
+    }
+
 }

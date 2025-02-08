@@ -1,18 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class PlayerStateMachine : MonoBehaviour
+public class PlayerStateMachine : BaseStateMachine
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public PlayerCharacter character;
 
-    // Update is called once per frame
-    void Update()
+    public UpState upState {  get; }
+    public DownState downState { get; }
+    public SprintState sprintState { get; }
+    public DamagedState damagedState { get; }
+    public SkillState skillState { get; }
+
+    public PlayerStateMachine(PlayerCharacter chara)
     {
-        
+        character = chara;
+
+        upState = new UpState(this);
+        downState = new DownState(this);
+        sprintState = new SprintState(this);
+        damagedState = new DamagedState(this);
+        skillState = new SkillState(this);
     }
 }
