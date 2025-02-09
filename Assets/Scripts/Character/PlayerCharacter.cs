@@ -10,6 +10,7 @@ public class PlayerCharacter : MonoBehaviour
     protected BoxCollider2D bc;
 
     [SerializeField] private StatScriptableObject statSO;
+    public PlayerStatHandler statHandler;
 
     //Temporary
     //Max
@@ -22,6 +23,10 @@ public class PlayerCharacter : MonoBehaviour
     public int currentHP = 5;
     public int currentMP = 0;
 
+    private void Awake()
+    {
+        statHandler = new PlayerStatHandler(statSO);
+    }
 
     void Start()
     {

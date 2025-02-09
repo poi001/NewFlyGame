@@ -388,15 +388,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b278e81a1fea7408cbdf52a4e6a80a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statSO: {fileID: 11400000, guid: faa56b504017b9545a8ffd713c670067, type: 2}
   maxHP: 5
   maxMP: 5
-  startSpeed: 1
+  speed: 15
   maxSpeed: 5
-  startWeight: 6
+  weight: 6
   currentHP: 5
   currentMP: 0
-  currentSpeed: 0
-  currentWeight: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
