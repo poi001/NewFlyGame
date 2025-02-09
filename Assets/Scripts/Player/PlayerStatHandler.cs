@@ -21,9 +21,28 @@ public class PlayerStatHandler
     {
         statSO = so;
 
-        maxStatData = new PlayerStatData(so.maxSpeed, so.weight, so.maxHP, so.maxMP);
-        currentStatData = new PlayerStatData(so.maxSpeed, so.weight, so.maxHP, so.maxMP);
+        maxStatData = new PlayerStatData(so.maxSpeed, 99, so.maxHP, so.maxMP);
+        currentStatData = new PlayerStatData(0, so.weight, so.maxHP, so.maxMP);
     }
 
-    //½ºÅÈ¹Ù²î´Â ÇÔ¼ö ±¸Çö
+    public void ChangeStat(EStat _eStat, int _stat)
+    {
+        switch (_eStat)
+        {
+            case EStat.SPD:
+                currentStatData.speed = Mathf.Clamp(_stat, 1, maxStatData.speed);
+                break;
+            case EStat.WEIGHT:
+                currentStatData.weight = Mathf.Clamp(_stat, 1, maxStatData.weight);
+                break;
+            case EStat.HP:
+                currentStatData.hp = Mathf.Clamp(_stat, 1, maxStatData.hp);
+                break;
+            case EStat.MP:
+                currentStatData.mp = Mathf.Clamp(_stat, 1, maxStatData.mp);
+                break;
+            default:
+                break;
+        }
+    }
 }
