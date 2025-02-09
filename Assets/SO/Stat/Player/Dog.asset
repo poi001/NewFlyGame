@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 506e87bf80dd8c840bfe522e0924f016, type: 3}
   m_Name: Dog
   m_EditorClassIdentifier: 
-  characterName: 
-  speed: 0
-  maxSpeed: 0
-  weight: 0
-  hp: 0
-  maxHP: 0
-  mp: 0
-  maxMP: 0
+  characterName: "\uAC1C"
+  description: "\uB192\uC740 \uCCB4\uB825\uC744 \uAC00\uC84C\uC9C0\uB9CC \uC18D\uB3C4\uAC00
+    \uB0AE\uC73C\uBA70 \uBB34\uAC70\uC6B4 \uCE90\uB9AD\uD130"
+  maxSpeed: 7
+  weight: 10
+  maxHP: 6
+  maxMP: 5

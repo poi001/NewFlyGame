@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 506e87bf80dd8c840bfe522e0924f016, type: 3}
   m_Name: Rat
   m_EditorClassIdentifier: 
-  characterName: 
-  speed: 0
-  maxSpeed: 0
-  weight: 0
-  hp: 0
-  maxHP: 0
-  mp: 0
-  maxMP: 0
+  characterName: "\uC950"
+  description: "\uC2A4\uB9B4\uC744 \uC6D0\uD55C\uB2E4\uBA74 \uC801\uD569\uD55C \uCE90\uB9AD\uD130"
+  maxSpeed: 10
+  weight: 4
+  maxHP: 3
+  maxMP: 3
