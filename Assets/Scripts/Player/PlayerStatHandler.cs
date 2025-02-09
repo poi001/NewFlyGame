@@ -6,16 +6,11 @@ using UnityEngine;
 public class PlayerStatHandler
 {
     StatScriptableObject statSO;
-
+    public PlayerStatData maxStatData { get; private set; }
+    public PlayerStatData currentStatData { get; private set; }
     public string characterName { get; private set; }
     public string description { get; private set; }
-    public int currentSpeed { get; private set; }
-    public int maxSpeed { get; private set; }
-    public float currentWeight { get; private set; }
-    public int currentHP { get; private set; }
-    public int maxHP { get; private set; }
-    public int currentMP { get; private set; }
-    public int maxMP { get; private set; }
+
 
     public PlayerStatHandler(StatScriptableObject so)
     {
@@ -25,20 +20,10 @@ public class PlayerStatHandler
     void InitializeStat(StatScriptableObject so)
     {
         statSO = so;
-        characterName = so.characterName;
-        description = so.description;
-        maxSpeed = so.maxSpeed;
-        currentWeight = so.weight;
-        maxHP = so.maxHP;
-        maxMP = so.maxMP;
 
-        currentSpeed = 1;
-        currentHP = maxHP;
-        currentMP = maxMP;
+        maxStatData = new PlayerStatData(so.maxSpeed, so.weight, so.maxHP, so.maxMP);
+        currentStatData = new PlayerStatData(so.maxSpeed, so.weight, so.maxHP, so.maxMP);
     }
 
-    private void ClampStat()
-    {
-
-    }
+    //½ºÅÈ¹Ù²î´Â ÇÔ¼ö ±¸Çö
 }
