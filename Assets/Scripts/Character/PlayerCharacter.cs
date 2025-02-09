@@ -9,8 +9,10 @@ public class PlayerCharacter : MonoBehaviour
     protected Rigidbody2D rb;
     protected BoxCollider2D bc;
 
+    [SerializeField] private StatScriptableObject statSO;
+
     //Temporary
-        //Max
+    //Max
     public int maxHP = 5;
     public int maxMP = 5;
     public float speed = 15.0f;
