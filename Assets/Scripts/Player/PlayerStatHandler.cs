@@ -36,13 +36,35 @@ public class PlayerStatHandler
                 currentStatData.weight = Mathf.Clamp(_stat, 1, maxStatData.weight);
                 break;
             case EStat.HP:
-                currentStatData.hp = Mathf.Clamp(_stat, 1, maxStatData.hp);
+                currentStatData.hp = Mathf.Clamp(_stat, 0, maxStatData.hp);
+                if (currentStatData.hp == 0) Dead();
                 break;
             case EStat.MP:
-                currentStatData.mp = Mathf.Clamp(_stat, 1, maxStatData.mp);
+                currentStatData.mp = Mathf.Clamp(_stat, 0, maxStatData.mp);
                 break;
             default:
                 break;
         }
+    }
+
+    private void Dead()
+    {
+
+    }
+
+    public void Damaged(int _damage)
+    {
+        ChangeStat(EStat.HP, currentStatData.hp  - _damage);
+    }
+
+    public void UseSkill(int _damage)
+    {
+        if(currentStatData.mp == 0)
+        {
+            Debug.LogError("마나가 없습니다.");
+            return;
+        }
+
+        ChangeStat(EStat.MP, 0);
     }
 }
