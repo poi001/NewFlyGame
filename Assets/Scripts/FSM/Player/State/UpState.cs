@@ -2,31 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpState : MonoBehaviour
+public class UpState : PlayerBaseState
 {
-    PlayerStateMachine stateMachine;
-
-    public UpState(PlayerStateMachine playerStateMachine)
-    {
-        stateMachine = playerStateMachine;
-    }
-
-    public void Enter()
+    public UpState(PlayerStateMachine playerStateMachine) : base(playerStateMachine)
     {
 
     }
 
-    public void Exit()
+    public override void Enter()
     {
 
     }
 
-    public void PhysicsUpdate()
+    public override void Exit()
     {
 
     }
 
-    public void Update()
+    public override void PhysicsUpdate()
+    {
+
+    }
+
+    public override void Update()
     {
 
     }

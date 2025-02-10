@@ -2,32 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamagedState : IState
+public class DamagedState : PlayerBaseState
 {
-    PlayerStateMachine stateMachine;
 
-    public DamagedState(PlayerStateMachine playerStateMachine)
-    {
-        stateMachine = playerStateMachine;
-    }
-
-    public void Enter()
+    public DamagedState(PlayerStateMachine playerStateMachine) : base(playerStateMachine)
     {
 
     }
 
-    public void Exit()
+    public override void Enter()
     {
-
+        base.Enter();
     }
 
-    public void PhysicsUpdate()
+    public override void Exit()
     {
-
+        base.Exit();
     }
 
-    public void Update()
+    public override void PhysicsUpdate()
     {
+        base.PhysicsUpdate();
+    }
 
+    public override void Update()
+    {
+        base.Update();
     }
 }

@@ -3,7 +3,7 @@ public class PlayerStateMachine : BaseStateMachine
 {
     public PlayerCharacter character;
 
-    public UpState upState {  get; }
+    public UpState upState { get; }
     public DownState downState { get; }
     public SprintState sprintState { get; }
     public DamagedState damagedState { get; }

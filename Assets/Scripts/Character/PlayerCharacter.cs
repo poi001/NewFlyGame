@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour
 {
-    protected Animator animator;
-    protected Rigidbody2D rb;
-    protected BoxCollider2D bc;
+    //[field:SerializeField] public Animator animator { get; private set; }
+    public Animator animator { get; private set; }
+    public Rigidbody2D rb { get; private set; }
+    public BoxCollider2D bc { get; private set; }
 
     [SerializeField] private StatScriptableObject statSO;
-    public PlayerStatHandler statHandler;
+    public PlayerStatHandler statHandler { get; protected set; }
+    public PlayerStateMachine stateMachine { get; protected set; }
+    public PlayerAnimationData animationData { get; protected set; }
 
     //Temporary
     //Max
@@ -26,14 +29,16 @@ public class PlayerCharacter : MonoBehaviour
     private void Awake()
     {
         statHandler = new PlayerStatHandler(statSO);
+        stateMachine = new PlayerStateMachine(this);
+        animationData = new PlayerAnimationData();
+
+        animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+        bc = GetComponent<BoxCollider2D>();
     }
 
     void Start()
     {
-        animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
-        bc = GetComponent<BoxCollider2D>();
-
         rb.gravityScale = weight;
     }
 }

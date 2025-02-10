@@ -9,7 +9,7 @@ public interface IState
 
 public class BaseStateMachine
 {
-    public IState currentState;
+    public IState currentState { get; private set; }
 
     public void ChanageState(IState state)
     {

@@ -53,22 +53,30 @@ public class PlayerMovement : MonoBehaviour
     {
         //rb.gravityScale = character.currentWeight * -2.0f;
         rb.gravityScale = -12.0f;
+
+        character.animator.SetBool("Up", true);//temp
     }
 
     private void MoveDown()
     {
         //rb.gravityScale = character.currentWeight;
         rb.gravityScale = 6.0f;
+
+        character.animator.SetBool("Up", false);//temp
     }
 
     private void OnSprint()
     {
         dir = Vector2.right * character.speed * 2.0f;
+
+        character.animator.SetBool("Sprint", true);//temp
     }
 
     private void MoveForward()
     {
         dir = Vector2.right * character.speed;
+
+        character.animator.SetBool("Sprint", false);//temp
     }
 
     private void ApplyMovement(Vector2 direction)
