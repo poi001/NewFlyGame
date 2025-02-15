@@ -10,19 +10,59 @@ public enum EStat
     MP = 3
 }
 
+public struct PlayerStat
+{
+    private int current_;
+    private int min_;
+    private int max_;
+
+    //실제 수치(float형)
+    public float value_ { get; private set; }
+
+    public int current
+    {
+        get { return current_; }
+        set { current_ = Mathf.Clamp(value, min_, max_); }
+    }
+    public int min
+    {
+        get { return min_; }
+        set { if (min_ < 0) min_ = 0; }
+    }
+    public int max
+    {
+        get { return max_; }
+        set { if (max_ > 0) max_ = 10; }
+    }
+
+
+    public void Initialize(int _current, int _min, int _max, float _value)
+    {
+        current = _current;
+        min = _min;
+        max = _max;
+        value_ = _value;
+    }
+}
+
 public class PlayerStatData
 {
-    public int speed;
-    public int weight;
-    public int hp;
-    public int mp;
+    public PlayerStat speed;        //Enum: 1
+    public PlayerStat weight;       //Enum: 2
+    public PlayerStat hp;           //Enum: 3
+    public PlayerStat mp;           //Enum: 4
 
 
-    public PlayerStatData(int _speed, int _weight, int _hp, int _mp)
+    public PlayerStatData(StatScriptableObject _so)
     {
-        speed = _speed;
-        weight = _weight;
-        hp = _hp;
-        mp = _mp;
+        Initialize(_so);
+    }
+
+    public void Initialize(StatScriptableObject _so)
+    {
+        speed.Initialize(_so.startSpeed, DefineClass.PlayerStat_MinSpeed, _so.maxSpeed, DefineClass.PlayerStat_SpeedValue);
+        weight.Initialize(_so.weight, 1, 20, DefineClass.PlayerStat_WeightValue);
+        hp.Initialize(_so.maxHP, DefineClass.PlayerStat_MinHP, _so.maxHP, 0.0f);
+        mp.Initialize(0, DefineClass.PlayerStat_MinMP, _so.maxMP, 0.0f);
     }
 }

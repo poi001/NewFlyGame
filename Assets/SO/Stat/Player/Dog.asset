@@ -16,6 +16,7 @@ MonoBehaviour:
   description: "\uB192\uC740 \uCCB4\uB825\uC744 \uAC00\uC84C\uC9C0\uB9CC \uC18D\uB3C4\uAC00
     \uB0AE\uC73C\uBA70 \uBB34\uAC70\uC6B4 \uCE90\uB9AD\uD130"
   maxSpeed: 7
+  startSpeed: 1
   weight: 10
   maxHP: 6
   maxMP: 5

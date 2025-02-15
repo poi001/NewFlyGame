@@ -12,6 +12,7 @@ public class StatScriptableObject : ScriptableObject
     public string characterName;
     public string description;
     public int maxSpeed;
+    public int startSpeed;
     public int weight;
     public int maxHP;
     public int maxMP;

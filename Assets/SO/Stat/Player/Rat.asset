@@ -15,6 +15,7 @@ MonoBehaviour:
   characterName: "\uC950"
   description: "\uC2A4\uB9B4\uC744 \uC6D0\uD55C\uB2E4\uBA74 \uC801\uD569\uD55C \uCE90\uB9AD\uD130"
   maxSpeed: 10
+  startSpeed: 1
   weight: 4
   maxHP: 3
   maxMP: 3

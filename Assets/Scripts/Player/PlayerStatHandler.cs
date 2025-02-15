@@ -6,8 +6,7 @@ using UnityEngine;
 public class PlayerStatHandler
 {
     StatScriptableObject statSO;
-    public PlayerStatData maxStatData { get; private set; }
-    public PlayerStatData currentStatData { get; private set; }
+    public PlayerStatData statData { get; private set; }
     public string characterName { get; private set; }
     public string description { get; private set; }
 
@@ -20,9 +19,7 @@ public class PlayerStatHandler
     void InitializeStat(StatScriptableObject so)
     {
         statSO = so;
-
-        maxStatData = new PlayerStatData(so.maxSpeed, 99, so.maxHP, so.maxMP);
-        currentStatData = new PlayerStatData(0, so.weight, so.maxHP, so.maxMP);
+        statData = new PlayerStatData(so);
     }
 
     public void ChangeStat(EStat _eStat, int _stat)
@@ -30,17 +27,16 @@ public class PlayerStatHandler
         switch (_eStat)
         {
             case EStat.SPD:
-                currentStatData.speed = Mathf.Clamp(_stat, 1, maxStatData.speed);
+                statData.speed.current = _stat;
                 break;
             case EStat.WEIGHT:
-                currentStatData.weight = Mathf.Clamp(_stat, 1, maxStatData.weight);
+                statData.weight.current = _stat;
                 break;
             case EStat.HP:
-                currentStatData.hp = Mathf.Clamp(_stat, 0, maxStatData.hp);
-                if (currentStatData.hp == 0) Dead();
+                statData.hp.current = _stat;
                 break;
             case EStat.MP:
-                currentStatData.mp = Mathf.Clamp(_stat, 0, maxStatData.mp);
+                statData.mp.current = _stat;
                 break;
             default:
                 break;
@@ -54,17 +50,18 @@ public class PlayerStatHandler
 
     public void Damaged(int _damage)
     {
-        ChangeStat(EStat.HP, currentStatData.hp  - _damage);
+        ChangeStat(EStat.HP, statData.hp.current - _damage);
+
+        if(statData.hp.current == 0) Dead();
     }
 
-    public void UseSkill(int _damage)
+    public void UseSkill(int _sp)
     {
-        if(currentStatData.mp == 0)
+        if (statData.mp.current == 0)
         {
             Debug.LogError("마나가 없습니다.");
             return;
         }
-
-        ChangeStat(EStat.MP, 0);
+        else ChangeStat(EStat.MP, statData.mp.current - _sp);
     }
 }

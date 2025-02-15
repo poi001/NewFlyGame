@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerAnimationData
 {
-    [SerializeField] private string upParameterName = "Up";
-    [SerializeField] private string sprintParameterName = "Sprint";
-    [SerializeField] private string damagedParameterName = "Damaged";
+    [SerializeField] private string upParameterName = DefineClass.PlayerAnimationParameter_Up;
+    [SerializeField] private string sprintParameterName = DefineClass.PlayerAnimationParameter_Sprint;
+    [SerializeField] private string damagedParameterName = DefineClass.PlayerAnimationParameter_Damaged;
 
     public int upParameterHash { get; private set; }
     public int sprintParameterHash { get; private set; }

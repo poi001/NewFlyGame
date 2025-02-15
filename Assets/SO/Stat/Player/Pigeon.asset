@@ -15,6 +15,7 @@ MonoBehaviour:
   characterName: "\uBE44\uB458\uAE30"
   description: "\uBE44\uAD50\uC801 \uBE60\uB978 \uCE90\uB9AD\uD130"
   maxSpeed: 9
+  startSpeed: 1
   weight: 6
   maxHP: 4
   maxMP: 4
