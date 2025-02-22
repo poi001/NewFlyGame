@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour
 {
-    //[field:SerializeField] public Animator animator { get; private set; }
     public Animator animator { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public BoxCollider2D bc { get; private set; }
@@ -14,17 +13,6 @@ public class PlayerCharacter : MonoBehaviour
     public PlayerStatHandler statHandler { get; protected set; }
     public PlayerStateMachine stateMachine { get; protected set; }
     public PlayerAnimationData animationData { get; protected set; }
-
-    //Temporary
-    //Max
-    public int maxHP = 5;
-    public int maxMP = 5;
-    public float speed = 15.0f;
-    public float maxSpeed = 60.0f;
-    public float weight = 6.0f;
-        //Current
-    public int currentHP = 5;
-    public int currentMP = 0;
 
     private void Awake()
     {
@@ -39,6 +27,6 @@ public class PlayerCharacter : MonoBehaviour
 
     void Start()
     {
-        rb.gravityScale = weight;
+        rb.gravityScale = statHandler.statData.weight.currentValue_;
     }
 }

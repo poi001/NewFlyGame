@@ -17,12 +17,17 @@ public struct PlayerStat
     private int max_;
 
     //실제 수치(float형)
-    public float value_ { get; private set; }
+    private float value_;
+    public float currentValue_ { get; private set; }
 
     public int current
     {
         get { return current_; }
-        set { current_ = Mathf.Clamp(value, min_, max_); }
+        set 
+        { 
+            current_ = Mathf.Clamp(value, min_, max_);
+            currentValue_ = value_ * current_;
+        }
     }
     public int min
     {
@@ -42,6 +47,7 @@ public struct PlayerStat
         min = _min;
         max = _max;
         value_ = _value;
+        currentValue_ = _value * _current;
     }
 }
 

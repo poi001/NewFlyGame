@@ -13,11 +13,13 @@ public class DamagedState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
+        stateMachine.currentState_Enum = EPlayerState.DAMAGE;
     }
 
     public override void Exit()
     {
         base.Exit();
+        stateMachine.currentState_Enum = EPlayerState.NONE;
     }
 
     public override void PhysicsUpdate()

@@ -10,7 +10,12 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     PlayerCharacter character;
 
-    private Vector2 dir = Vector2.zero;
+    private Vector2 dir = Vector2.right;
+    private float speed;
+    private float weight;
+
+    private bool isSprint = false;
+    private bool isUp = false;
 
     private void Start()
     {
@@ -30,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         ApplyMovement(dir);
-        //Debug.Log(dir);//temp
+        Debug.Log(rb.velocity.x);
     }
 
     private void OnSubs()
@@ -51,38 +56,58 @@ public class PlayerMovement : MonoBehaviour
 
     private void MoveUp()
     {
-        //rb.gravityScale = character.currentWeight * -2.0f;
-        rb.gravityScale = -12.0f;
-
-        character.animator.SetBool("Up", true);//temp
+        isUp = true;
+        if(character.stateMachine.currentState_Enum != EPlayerState.SPRINT)
+            character.stateMachine.ChanageState(character.stateMachine.upState);
     }
 
     private void MoveDown()
     {
-        //rb.gravityScale = character.currentWeight;
-        rb.gravityScale = 6.0f;
-
-        character.animator.SetBool("Up", false);//temp
+        isUp = false;
+        if (character.stateMachine.currentState_Enum != EPlayerState.SPRINT)
+            character.stateMachine.ChanageState(character.stateMachine.downState);
     }
 
     private void OnSprint()
     {
-        dir = Vector2.right * character.speed * 2.0f;
-
-        character.animator.SetBool("Sprint", true);//temp
+        dir = Vector2.right;
+        isSprint = true;
+        character.stateMachine.ChanageState(character.stateMachine.sprintState);
     }
 
     private void MoveForward()
     {
-        dir = Vector2.right * character.speed;
-
-        character.animator.SetBool("Sprint", false);//temp
+        dir = Vector2.right;
+        isSprint = false;
+        character.stateMachine.ChanageState(character.stateMachine.downState);
     }
 
     private void ApplyMovement(Vector2 direction)
     {
-        rb.AddForce(direction);
+        //Speed
+        if (isSprint) speed = character.statHandler.statData.speed.currentValue_ * 2.0f;
+        else speed = character.statHandler.statData.speed.currentValue_;
+
+        //Weight
+        if (isUp) weight = character.statHandler.statData.weight.currentValue_ * -2.0f;
+        else weight = character.statHandler.statData.weight.currentValue_;
+
+        //Movement
+        rb.AddForce(direction * speed);
+        rb.gravityScale = weight;
+
+        //속도 제한 함수 구현
+        CheckSpeed();
         CheckGravity();
+    }
+
+    private void CheckSpeed()
+    {
+        if (rb.velocity.x > speed * 1.5f)
+        {
+            float y = rb.velocity.y;
+            rb.velocity = new Vector2(speed * 1.5f, y);
+        }
     }
 
     private void CheckGravity()

@@ -31,12 +31,16 @@ public class PlayerBaseState : IState
 
     }
 
-    protected void StartAnimation(int animationHash)
+    protected void StartAnimation_Bool(int animationHash)
     {
         stateMachine.character.animator.SetBool(animationHash, true);
     }
-    protected void StopAnimation(int animationHash)
+    protected void StopAnimation_Bool(int animationHash)
     {
         stateMachine.character.animator.SetBool(animationHash, false);
+    }
+    protected void StartAnimation_Trigger(int animationHash)
+    {
+        stateMachine.character.animator.SetTrigger(animationHash);
     }
 }
