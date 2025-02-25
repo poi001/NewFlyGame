@@ -19,4 +19,15 @@ public class DefineClass
     public const string PlayerAnimationParameter_Up = "Up";
     public const string PlayerAnimationParameter_Sprint = "Sprint";
     public const string PlayerAnimationParameter_Damaged = "Damaged";
+
+    //Tag
+    public const string Tag_Obstacle = "Obstacle";
+    public const string Tag_Item = "Item";
+    public const string Tag_Player = "Player";
+
+    //Layer
+    public const int Layer_Player = 6;
+    public const int Layer_PlayerDamaged = 7;
+    public const int Layer_Obstacle = 8;
+    public const int Layer_Item = 9;
 }

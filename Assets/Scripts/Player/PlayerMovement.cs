@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
+using UnityEngine.U2D;
 
 public class PlayerMovement : MonoBehaviour
 {
     PlayerInputManager input;
     Rigidbody2D rb;
     PlayerCharacter character;
+    SpriteRenderer sprite;
 
     private Vector2 dir = Vector2.right;
     private float speed;
@@ -17,11 +19,14 @@ public class PlayerMovement : MonoBehaviour
     private bool isSprint = false;
     private bool isUp = false;
 
+    Coroutine blinkCoroutine_;
+
     private void Start()
     {
         input = GetComponent<PlayerInputManager>();
         rb = GetComponent<Rigidbody2D>();
         character = GetComponent<PlayerCharacter>();
+        sprite = GetComponent<SpriteRenderer>();
 
         OnSubs();
         MoveForward();
@@ -36,6 +41,14 @@ public class PlayerMovement : MonoBehaviour
     {
         ApplyMovement(dir);
         Debug.Log(rb.velocity.x);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(DefineClass.Tag_Obstacle))
+        {
+            OnDamaged(collision.gameObject.transform.position);
+        }
     }
 
     private void OnSubs()
@@ -122,5 +135,40 @@ public class PlayerMovement : MonoBehaviour
             float x = rb.velocity.x;
             rb.velocity = new Vector2(x, 7.5f);
         }
+    }
+
+    private void OnDamaged(Vector2 _targetPos)
+    {
+        gameObject.layer = DefineClass.Layer_PlayerDamaged;
+
+        blinkCoroutine_ = StartCoroutine(StartBlinkPlayer());
+        Invoke("StopBlinkPlayer", 1.0f);
+
+        float dir_ = transform.position.x < _targetPos.x ? -10.0f : 10.0f;
+        rb.AddForce(new Vector2(dir_, 1.0f), ForceMode2D.Impulse);
+    }
+
+    IEnumerator StartBlinkPlayer()
+    {
+        Color colorAlpha_ = sprite.color;
+
+        while (true)
+        {
+            yield return new WaitForSeconds(0.1f);
+            colorAlpha_.a = 0.3f;
+            sprite.color = colorAlpha_;
+
+            yield return new WaitForSeconds(0.1f);
+            colorAlpha_.a = 1.0f;
+            sprite.color = colorAlpha_;
+        }
+    }
+
+    private void StopBlinkPlayer()
+    {
+        sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 1.0f);
+        StopCoroutine(blinkCoroutine_);
+
+        gameObject.layer = DefineClass.Layer_Player;
     }
 }

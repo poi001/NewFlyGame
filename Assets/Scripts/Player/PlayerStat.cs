@@ -43,11 +43,20 @@ public struct PlayerStat
 
     public void Initialize(int _current, int _min, int _max, float _value)
     {
-        current = _current;
-        min = _min;
-        max = _max;
+        min_ = _min;
+        max_ = _max;
         value_ = _value;
+        current_ = _current;
         currentValue_ = _value * _current;
+
+        Check();
+    }
+
+    public void Check()
+    {
+        min = min_;
+        max = max_;
+        current = current_;
     }
 }
 

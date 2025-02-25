@@ -5,15 +5,4 @@ using UnityEngine;
 public class Pigeon : PlayerCharacter
 {
 
-
-    void Start()
-    {
-        //base.Start();
-
-    }
-
-    void Update()
-    {
-        
-    }
 }

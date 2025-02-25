@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -13,6 +14,7 @@ public class PlayerCharacter : MonoBehaviour
     public PlayerStatHandler statHandler { get; protected set; }
     public PlayerStateMachine stateMachine { get; protected set; }
     public PlayerAnimationData animationData { get; protected set; }
+    public PlayerMovement movement { get; protected set; }
 
     private void Awake()
     {
@@ -23,10 +25,19 @@ public class PlayerCharacter : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
+        movement = GetComponent<PlayerMovement>();
     }
 
     void Start()
     {
         rb.gravityScale = statHandler.statData.weight.currentValue_;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(DefineClass.Tag_Item))
+        {
+
+        }
     }
 }
