@@ -32,12 +32,4 @@ public class PlayerCharacter : MonoBehaviour
     {
         rb.gravityScale = statHandler.statData.weight.currentValue_;
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag(DefineClass.Tag_Item))
-        {
-
-        }
-    }
 }

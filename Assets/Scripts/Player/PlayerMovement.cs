@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(DefineClass.Tag_Obstacle))
         {
-            OnDamaged(collision.gameObject.transform.position);
+            OnDamaged();
         }
     }
 
@@ -137,15 +137,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnDamaged(Vector2 _targetPos)
+    private void OnDamaged()
     {
         gameObject.layer = DefineClass.Layer_PlayerDamaged;
 
         blinkCoroutine_ = StartCoroutine(StartBlinkPlayer());
         Invoke("StopBlinkPlayer", 1.0f);
 
-        float dir_ = transform.position.x < _targetPos.x ? -10.0f : 10.0f;
-        rb.AddForce(new Vector2(dir_, 1.0f), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(-10.0f, 1.0f), ForceMode2D.Impulse);
     }
 
     IEnumerator StartBlinkPlayer()
