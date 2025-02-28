@@ -6,13 +6,18 @@ public class PlayerCamera : MonoBehaviour
 {
     float y;
 
-    void Start()
+    private void Start()
     {
-        y = transform.position.y;
+        y = gameObject.transform.position.y;
     }
 
     private void FixedUpdate()
     {
-        transform.position = new Vector3(transform.position.x, y, transform.position.z);
+        if (GameManager.Instance.Player != null)
+        {
+            Vector3 _playerPos = GameManager.Instance.Player.gameObject.transform.localPosition;
+            gameObject.transform.position = new Vector3(_playerPos.x, y, -10.0f);
+        }
+        else Debug.LogError("GameManager.Instance.Player == null, PlayerCamera -> FixedUpdate");
     }
 }

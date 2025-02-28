@@ -28,8 +28,14 @@ public class PlayerCharacter : MonoBehaviour
         movement = GetComponent<PlayerMovement>();
     }
 
-    void Start()
+    private void Start()
     {
+        GameManager.Instance.Player = this;
         rb.gravityScale = statHandler.statData.weight.currentValue_;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.Player = null;
     }
 }
