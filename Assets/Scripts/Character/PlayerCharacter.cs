@@ -36,6 +36,6 @@ public class PlayerCharacter : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameManager.Instance.Player = null;
+        if (GameManager.Instance != null && GameManager.Instance.Player != null) GameManager.Instance.Player = null;
     }
 }
