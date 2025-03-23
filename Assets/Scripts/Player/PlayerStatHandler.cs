@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,9 @@ public class PlayerStatHandler
     public PlayerStatData statData { get; private set; }
     public string characterName { get; private set; }
     public string description { get; private set; }
+
+    public event Action OnDamage;       //대미지 받을 때
+    public event Action OnDeath;        //죽을 때
 
 
     public PlayerStatHandler(StatScriptableObject so)
@@ -45,11 +49,13 @@ public class PlayerStatHandler
 
     private void Dead()
     {
-
+        OnDeath.Invoke();
     }
 
     public void Damaged(int _damage)
     {
+        OnDamage.Invoke();
+
         ChangeStat(EStat.HP, statData.hp.current - _damage);
 
         if(statData.hp.current == 0) Dead();

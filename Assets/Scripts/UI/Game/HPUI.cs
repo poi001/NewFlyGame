@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class HPUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Image[] hpImage;
 
-    // Update is called once per frame
-    void Update()
+    private int maxHP;
+    private int currentHP;
+
+    private void Init()
     {
-        
+
     }
 }

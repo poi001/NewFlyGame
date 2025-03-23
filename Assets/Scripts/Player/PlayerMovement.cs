@@ -40,7 +40,6 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         ApplyMovement(dir);
-        Debug.Log(rb.velocity.x);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -30,4 +30,10 @@ public class DefineClass
     public const int Layer_PlayerDamaged = 7;
     public const int Layer_Obstacle = 8;
     public const int Layer_Item = 9;
+
+    //UI Name
+    public const string UI_HP = "HPUIBackGround";
+    public const string UI_Skill = "SkillUIBackGround";
+    public const string UI_Distance = "DistanceUI";
+    public const string UI_Timer = "TimerUI";
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +37,26 @@ public class GameManager : MonoBehaviour
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public PlayerCharacter Player;
+
+    //Player
+    [HideInInspector] public PlayerCharacter Player;
+
+    //Object
+    [Header("Player")]
+    [SerializeField] private GameObject PlayerObject;
+    [Header("UI")]
+    [SerializeField] private GameObject UICanavas;
+
+    public UIManager UIManager_ = new UIManager();
+    public SceneManager SceneManager_ = new SceneManager();
+
+    private void Start()
+    {
+        //생성 순서 지켜야 함 ( 플레이어가 먼저 )
+        Instantiate(PlayerObject, Vector2.zero, Quaternion.identity);
+        UIManager_.Init(Instantiate(UICanavas));
+        SceneManager_.Init();
+    }
+
 
 }

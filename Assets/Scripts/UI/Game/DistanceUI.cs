@@ -1,18 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DistanceUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Text distanceText;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        int _distance = (int)GameManager.Instance.Player.transform.position.x;
+        distanceText.text = _distance.ToString() + "M";
     }
 }

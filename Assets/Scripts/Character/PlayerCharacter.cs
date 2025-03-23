@@ -34,7 +34,7 @@ public class PlayerCharacter : MonoBehaviour
         rb.gravityScale = statHandler.statData.weight.currentValue_;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         if (GameManager.Instance != null && GameManager.Instance.Player != null) GameManager.Instance.Player = null;
     }
