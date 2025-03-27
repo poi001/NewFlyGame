@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3979823840748487849}
   - component: {fileID: 2345630500696986224}
   - component: {fileID: 3381491340613236109}
+  - component: {fileID: -425431948776153703}
   m_Layer: 0
   m_Name: Tilemap5
   m_TagString: Untagged
@@ -111,7 +112,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -120,3 +121,15 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!114 &-425431948776153703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4417113218557971614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58adbf077a261894187ef62bcfdb012c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

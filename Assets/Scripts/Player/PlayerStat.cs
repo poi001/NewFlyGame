@@ -37,7 +37,7 @@ public struct PlayerStat
     public int max
     {
         get { return max_; }
-        set { if (max_ > 0) max_ = 10; }
+        set { if (max_ > 10) max_ = 10; }
     }
 
 

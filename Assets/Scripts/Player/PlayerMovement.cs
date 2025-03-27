@@ -169,4 +169,11 @@ public class PlayerMovement : MonoBehaviour
 
         gameObject.layer = DefineClass.Layer_Player;
     }
+
+    public Vector2 GetPlayerVector2()
+    {
+        return rb.velocity;
+
+
+    }
 }
