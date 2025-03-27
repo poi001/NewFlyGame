@@ -1543,70 +1543,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &4815892972955329142
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7770863278513644340}
-  - component: {fileID: 5341638409326985857}
-  - component: {fileID: 7770863278513644341}
-  m_Layer: 0
-  m_Name: Grid
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!156049354 &5341638409326985857
-Grid:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4815892972955329142}
-  m_Enabled: 1
-  m_CellSize: {x: 1, y: 1, z: 0}
-  m_CellGap: {x: 0, y: 0, z: 0}
-  m_CellLayout: 0
-  m_CellSwizzle: 0
---- !u!4 &7770863278513644340
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4815892972955329142}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7770863278513644341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4815892972955329142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5142b71a92990134a964c2cd46f844af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obstacles:
-  - {fileID: 3505605488539305143, guid: e1e43d879e95d674abe40ed3cb623559, type: 3}
-  - {fileID: 3702160937619280822, guid: 242acef2b325d5e439985fa5578f9873, type: 3}
-  - {fileID: 8923198827110048548, guid: ee2e474ed849f5d4f88d1c735339e9df, type: 3}
-  - {fileID: 8461426011478354398, guid: c30eb0f0e4fe5f14398f6a841f35cf6b, type: 3}
-  - {fileID: 4417113218557971614, guid: 60fab563d0dc5ec41beffef6a06699f4, type: 3}
-  goal: 1500
 --- !u!1001 &8080226296857520600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1660,6 +1596,10 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 7564319223983898938, guid: 553d0ec278d6c504f82d362292d2237c, type: 3}
+      propertyPath: Grid
+      value: 
+      objectReference: {fileID: 5692338332926282340, guid: da80c96a5beb21d4182566a24adc1d5a, type: 3}
+    - target: {fileID: 7564319223983898938, guid: 553d0ec278d6c504f82d362292d2237c, type: 3}
       propertyPath: PlayerObject
       value: 
       objectReference: {fileID: 2840850625461474539, guid: 30b97cbbf1e39944c8f357aa39db868d, type: 3}
@@ -1679,7 +1619,6 @@ SceneRoots:
   - {fileID: 651136310}
   - {fileID: 1390546700}
   - {fileID: 1131018490}
-  - {fileID: 7770863278513644340}
   - {fileID: 982868757}
   - {fileID: 640077528}
   - {fileID: 1398191496}

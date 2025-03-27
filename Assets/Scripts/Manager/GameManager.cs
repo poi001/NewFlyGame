@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject PlayerObject;
     [Header("UI")]
     [SerializeField] private GameObject UICanavas;
+    [Header("Tilemap")]
+    [SerializeField] private GameObject Grid;
 
     public UIManager UIManager_ = new UIManager();
     public SceneManager SceneManager_ = new SceneManager();
@@ -53,10 +55,9 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         //생성 순서 지켜야 함 ( 플레이어가 먼저 )
-        Instantiate(PlayerObject, Vector2.zero, Quaternion.identity);
-        UIManager_.Init(Instantiate(UICanavas));
-        SceneManager_.Init();
+        Instantiate(PlayerObject, Vector2.zero, Quaternion.identity);   //Player
+        UIManager_.Init(Instantiate(UICanavas));                        //UI
+        SceneManager_.Init();                                           //Scene
+        Instantiate(Grid, Vector2.zero, Quaternion.identity);           //Grid
     }
-
-
 }
