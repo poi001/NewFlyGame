@@ -52,14 +52,16 @@ public class PlayerStatHandler
 
     private void Dead()
     {
-        OnDeath.Invoke();
+        OnDeath?.Invoke();
+
+        Time.timeScale = 0;
     }
 
     public void Damaged()
     {
         ChangeStat(EStat.HP, statData.hp.current - 1);
 
-        OnDamage.Invoke();
+        OnDamage?.Invoke();
 
         if (statData.hp.current == 0) Dead();
     }
@@ -68,7 +70,7 @@ public class PlayerStatHandler
     {
         ChangeStat(EStat.HP, statData.hp.current + 1);
 
-        OnHeal.Invoke();
+        OnHeal?.Invoke();
     }
 
     public void UseSkill()
@@ -80,13 +82,13 @@ public class PlayerStatHandler
         }
         else ChangeStat(EStat.MP, 0);
 
-        OnChangeSkillPoint.Invoke();
+        OnChangeSkillPoint?.Invoke();
     }
 
     public void GetSkillPoint()
     {
         ChangeStat(EStat.MP, statData.mp.current + 1);
 
-        OnChangeSkillPoint.Invoke();
+        OnChangeSkillPoint?.Invoke();
     }
 }

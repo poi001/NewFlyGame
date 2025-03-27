@@ -144,6 +144,8 @@ public class PlayerMovement : MonoBehaviour
         Invoke("StopBlinkPlayer", 1.0f);
 
         rb.AddForce(new Vector2(-10.0f, 1.0f), ForceMode2D.Impulse);
+
+        character.statHandler.Damaged();
     }
 
     IEnumerator StartBlinkPlayer()
