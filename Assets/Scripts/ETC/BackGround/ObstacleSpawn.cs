@@ -12,7 +12,10 @@ public class ObstacleSpawn : MonoBehaviour
 
     private void Start()
     {
-        checkPointDistance = goal / (obstacles.Length + 1) / 2.0f;
+        checkPointDistance = goal / (obstacles.Length) / 2.0f;
+
+        Instantiate(obstacles[num], gameObject.transform);
+        num++;
     }
 
     private void Update()
@@ -26,7 +29,7 @@ public class ObstacleSpawn : MonoBehaviour
             if (num < obstacles.Length)
             {
                 Instantiate(obstacles[num], gameObject.transform);
-                checkPointDistance += goal / (obstacles.Length + 1);
+                checkPointDistance += goal / (obstacles.Length);
                 num++;
             }
         }
