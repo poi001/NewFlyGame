@@ -17,6 +17,8 @@ public class PlayerCharacter : MonoBehaviour
     public PlayerAnimationData animationData { get; protected set; }
     public PlayerMovement movement { get; protected set; }
 
+    public MotionTrail motionTrail { get; protected set; }
+
     private void Awake()
     {
         statHandler = new PlayerStatHandler(statSO);
@@ -27,6 +29,7 @@ public class PlayerCharacter : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
         movement = GetComponent<PlayerMovement>();
+        motionTrail = GetComponent<MotionTrail>();
     }
 
     private void Start()
@@ -38,5 +41,13 @@ public class PlayerCharacter : MonoBehaviour
     private void OnDisable()
     {
         if (GameManager.Instance != null && GameManager.Instance.Player != null) GameManager.Instance.Player = null;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            motionTrail.OnMotionTrail(1.0f);
+        }
     }
 }

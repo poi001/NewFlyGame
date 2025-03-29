@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4717910461394980785}
   - component: {fileID: 9000491354588266549}
   - component: {fileID: 4634993501576015924}
+  - component: {fileID: 6459193133235739960}
   m_Layer: 6
   m_Name: Pigeon_Prefab
   m_TagString: Player
@@ -220,3 +221,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.24463132}
   m_EdgeRadius: 0
+--- !u!114 &6459193133235739960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2840850625461474539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcd4830606dd0574b94fa7fbd1a6e53a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghost: {fileID: 2116854387287593974, guid: 9b5e294e2a8b98c44998916ba099070f, type: 3}

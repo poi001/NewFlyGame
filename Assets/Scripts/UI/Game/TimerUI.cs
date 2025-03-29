@@ -5,14 +5,19 @@ using UnityEngine.UI;
 
 public class TimerUI : MonoBehaviour
 {
-    //[SerializeField] private Text timerText;
-    private float time_;
-    public Text timerText;
+    [field: SerializeField] public Text TimerText { get; private set; }
+    public float Time_ { get; private set; }
+
+    private void Start()
+    {
+        TimerText = GetComponent<Text>();
+    }
+
     private void Update()
     {
-        time_ += Time.deltaTime;
-        int time_int = (int)time_;
+        Time_ += Time.deltaTime;
+        int time_int = (int)Time_;
 
-        timerText.text = time_int.ToString();
+        TimerText.text = time_int.ToString();
     }
 }

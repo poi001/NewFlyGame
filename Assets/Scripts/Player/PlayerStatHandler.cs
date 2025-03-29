@@ -55,6 +55,8 @@ public class PlayerStatHandler
         OnDeath?.Invoke();
 
         Time.timeScale = 0;
+
+        GameManager.Instance.UIManager_.GameResultUI_.gameObject.SetActive(true);
     }
 
     public void Damaged()
