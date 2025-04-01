@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fab15dd8c1fee64a953e0235db97144, type: 3}
-  m_Name: Dash
+  m_Name: SpeedUp
   m_EditorClassIdentifier: 
-  SkillName: Dash
-  Description: You will become invulnerable for a short time and lunge forward.
+  SkillName: SpeedUp
+  Description: Your movement speed is permanently increased.
   Sprite: {fileID: 0}

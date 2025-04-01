@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 //fileName : 생성되는 에셋의 이름
@@ -6,12 +7,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SkillSO", menuName = "NewFlyGame/SkillSO", order = 1)]
 public class SkillScriptableObject : ScriptableObject
 {
-    [Header("Stat Info")]
-    public string characterName;
-    public string description;
-    public int maxSpeed;
-    public int startSpeed;
-    public int weight;
-    public int maxHP;
-    public int maxMP;
+    [Header("Skill Info")]
+    public string SkillName;
+    public string Description;
+    public Sprite Sprite;
 }

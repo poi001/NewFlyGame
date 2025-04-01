@@ -4,5 +4,21 @@ using UnityEngine;
 
 public class Pigeon : PlayerCharacter
 {
+    protected override void Start()
+    {
+        base.Start();
+
+        List<SkillBase> _skillList = new List<SkillBase>();
+
+        //_skillList[0]
+        _skillList.Add(new Skill_Dash());// = new Skill_Dash();
+        //_skillList[2] = new Skill_Dash();
+        //_skillList[3] = new Skill_Dash();
+
+        foreach (SkillBase skill in _skillList) skill.Init(this);
+
+        skillHandler.Init(_skillList.ToArray());
+    }
+
 
 }

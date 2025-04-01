@@ -56,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
         input.OnDown += MoveDown;
         input.OnSprint += OnSprint;
         input.OffSprint += MoveForward;
+        input.OnSkill += OnSkill;
     }
 
     private void OffSubs()
@@ -64,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
         input.OnDown -= MoveDown;
         input.OnSprint -= OnSprint;
         input.OffSprint -= MoveForward;
+        input.OnSkill -= OnSkill;
     }
 
     private void MoveUp()
@@ -94,11 +96,16 @@ public class PlayerMovement : MonoBehaviour
         character.stateMachine.ChanageState(character.stateMachine.downState);
     }
 
+    private void OnSkill()
+    {
+        character.skillHandler.ActiveSkill();
+    }
+
     private void ApplyMovement(Vector2 direction)
     {
         //Speed
-        if (isSprint) speed = character.statHandler.statData.speed.currentValue_ * 2.0f;
-        else speed = character.statHandler.statData.speed.currentValue_;
+        if (isSprint) ChangeSpeed(2.0f);
+        else ChangeSpeed(1.0f);
 
         //Weight
         if (isUp) weight = character.statHandler.statData.weight.currentValue_ * -2.0f;
@@ -172,10 +179,23 @@ public class PlayerMovement : MonoBehaviour
         gameObject.layer = DefineClass.Layer_Player;
     }
 
-    public Vector2 GetPlayerVector2()
+    //스피드 설정(배속 있는 버전)
+    public void ChangeSpeed(int _speedStack, float _multiply)
     {
-        return rb.velocity;
+        character.statHandler.statData.speed.current = _speedStack;
+        speed = character.statHandler.statData.speed.currentValue_ * _multiply;
+    }
 
+    //스피드 설정(배속 없는 버전, 1배)
+    public void ChangeSpeed(int _speedStack)
+    {
+        character.statHandler.statData.speed.current = _speedStack;
+        speed = character.statHandler.statData.speed.currentValue_;
+    }
 
+    //스피드 설정(배속만 있는 버전, 주의: 2배 후, 0.5배 하면 원상태로 돌아가는게 아닌 원래속도의 0.5배로 설정됨)
+    public void ChangeSpeed(float _multiply)
+    {
+        speed = character.statHandler.statData.speed.currentValue_ * _multiply;
     }
 }

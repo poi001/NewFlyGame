@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 9000491354588266549}
   - component: {fileID: 4634993501576015924}
   - component: {fileID: 6459193133235739960}
+  - component: {fileID: 6423385097356705890}
+  - component: {fileID: 5093764989239916341}
   m_Layer: 6
   m_Name: Pigeon_Prefab
   m_TagString: Player
@@ -151,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b278e81a1fea7408cbdf52a4e6a80a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statSO: {fileID: 11400000, guid: faa56b504017b9545a8ffd713c670067, type: 2}
+  rb: {fileID: 7107107558786610211}
 --- !u!114 &4717910461394980785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,3 +236,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghost: {fileID: 2116854387287593974, guid: 9b5e294e2a8b98c44998916ba099070f, type: 3}
+--- !u!114 &6423385097356705890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2840850625461474539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5644aa9f12e07b9429f716cd2ee962e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statSO: {fileID: 11400000, guid: faa56b504017b9545a8ffd713c670067, type: 2}
+--- !u!114 &5093764989239916341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2840850625461474539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f4958e5e42c2f4f87b6ef91d44635d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <SkillSOs>k__BackingField:
+  - {fileID: 11400000, guid: 31662ba7e0c0f4042b1b54668c526993, type: 2}
+  - {fileID: 11400000, guid: 0312663dba3d7e54bbf9b983eae57ec9, type: 2}
+  - {fileID: 11400000, guid: 279112db5478dc84489c354e243577a6, type: 2}
+  - {fileID: 11400000, guid: a35da85378b658043a0b4a17525bf307, type: 2}

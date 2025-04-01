@@ -1,24 +1,34 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public interface ISkill
 {
-    string Name { get; }
-    string Description { get; }
+    public void Init(PlayerCharacter _player);
+    public void ActiveSkill();
+    public void DeactiveSkill();
 }
 
-public class SkillBase : MonoBehaviour
+public abstract class SkillBase : ISkill
 {
-    // Start is called before the first frame update
-    void Start()
+    protected PlayerCharacter character;
+    public float time { get; protected set; }
+    protected Buff buff;
+
+    public void Init(PlayerCharacter _player)
     {
-        
+        character = _player;
     }
 
-    // Update is called once per frame
-    void Update()
+    public abstract void ActiveSkill();
+
+    public abstract void DeactiveSkill();
+
+    protected void CreateBuff(EBuffType _buffType, float _time)
     {
-        
+        buff = new Buff(_buffType, _time);
+        character.skillHandler.buffSystem.AddBuff(buff);
+        buff.EndBuff += DeactiveSkill;
     }
 }

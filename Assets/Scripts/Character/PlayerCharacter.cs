@@ -11,28 +11,29 @@ public class PlayerCharacter : MonoBehaviour
     public Rigidbody2D rb { get; private set; }
     public BoxCollider2D bc { get; private set; }
 
-    [SerializeField] private StatScriptableObject statSO;
-    public PlayerStatHandler statHandler { get; protected set; }
     public PlayerStateMachine stateMachine { get; protected set; }
     public PlayerAnimationData animationData { get; protected set; }
-    public PlayerMovement movement { get; protected set; }
 
+    public PlayerStatHandler statHandler { get; protected set; }
+    public PlayerMovement movement { get; protected set; }
     public MotionTrail motionTrail { get; protected set; }
+    public PlayerSkillHandler skillHandler { get; protected set; }
 
     private void Awake()
     {
-        statHandler = new PlayerStatHandler(statSO);
         stateMachine = new PlayerStateMachine(this);
         animationData = new PlayerAnimationData();
 
+        statHandler = GetComponent<PlayerStatHandler>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
         movement = GetComponent<PlayerMovement>();
         motionTrail = GetComponent<MotionTrail>();
+        skillHandler = GetComponent<PlayerSkillHandler>();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         GameManager.Instance.Player = this;
         rb.gravityScale = statHandler.statData.weight.currentValue_;
@@ -47,7 +48,8 @@ public class PlayerCharacter : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            motionTrail.OnMotionTrail(1.0f);
+            statHandler.AddSkillPoint();
+            skillHandler.ActiveSkill();
         }
     }
 }
