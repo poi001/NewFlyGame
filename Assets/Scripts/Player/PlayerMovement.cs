@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isSprint = false;
     private bool isUp = false;
 
+    private bool stationaryMoveSpeed = false;
+
     Coroutine blinkCoroutine_;
 
     private void Start()
@@ -57,6 +59,8 @@ public class PlayerMovement : MonoBehaviour
         input.OnSprint += OnSprint;
         input.OffSprint += MoveForward;
         input.OnSkill += OnSkill;
+
+        character.statHandler.OnChangeStat += UpdateMovementStat;
     }
 
     private void OffSubs()
@@ -66,6 +70,8 @@ public class PlayerMovement : MonoBehaviour
         input.OnSprint -= OnSprint;
         input.OffSprint -= MoveForward;
         input.OnSkill -= OnSkill;
+
+        character.statHandler.OnChangeStat -= UpdateMovementStat;
     }
 
     private void MoveUp()
@@ -104,12 +110,17 @@ public class PlayerMovement : MonoBehaviour
     private void ApplyMovement(Vector2 direction)
     {
         //Speed
-        if (isSprint) ChangeSpeed(2.0f);
-        else ChangeSpeed(1.0f);
+        if(!stationaryMoveSpeed)
+        {
+            float _currentSpeed = character.statHandler.GetCurrentValueStat(EStatType.SPD);
+            if (isSprint) speed = _currentSpeed * 2.0f;
+            else speed = _currentSpeed;
+        }
 
         //Weight
-        if (isUp) weight = character.statHandler.statData.weight.currentValue_ * -2.0f;
-        else weight = character.statHandler.statData.weight.currentValue_;
+        float _currentWeight = character.statHandler.GetCurrentValueStat(EStatType.WEIGHT);
+        if (isUp) weight = _currentWeight * -2.0f;
+        else weight = _currentWeight;
 
         //Movement
         rb.AddForce(direction * speed);
@@ -179,23 +190,27 @@ public class PlayerMovement : MonoBehaviour
         gameObject.layer = DefineClass.Layer_Player;
     }
 
-    //스피드 설정(배속 있는 버전)
-    public void ChangeSpeed(int _speedStack, float _multiply)
+    private void UpdateMovementStat()
     {
-        character.statHandler.statData.speed.current = _speedStack;
-        speed = character.statHandler.statData.speed.currentValue_ * _multiply;
+        speed = character.statHandler.GetCurrentValueStat(EStatType.SPD);
+        weight = character.statHandler.GetCurrentValueStat(EStatType.WEIGHT);
     }
 
-    //스피드 설정(배속 없는 버전, 1배)
-    public void ChangeSpeed(int _speedStack)
+    public void SetOnStationaryMoveSpeed(float _spd)
     {
-        character.statHandler.statData.speed.current = _speedStack;
-        speed = character.statHandler.statData.speed.currentValue_;
+        if(!stationaryMoveSpeed)
+        {
+            stationaryMoveSpeed = true;
+            speed = _spd;
+        }
     }
 
-    //스피드 설정(배속만 있는 버전, 주의: 2배 후, 0.5배 하면 원상태로 돌아가는게 아닌 원래속도의 0.5배로 설정됨)
-    public void ChangeSpeed(float _multiply)
+    public void SetOffStationaryMoveSpeed(float _spd)
     {
-        speed = character.statHandler.statData.speed.currentValue_ * _multiply;
+        if (stationaryMoveSpeed)
+        {
+            stationaryMoveSpeed = false;
+            speed = character.statHandler.GetCurrentValueStat(EStatType.SPD);
+        }
     }
 }

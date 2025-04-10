@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EStat
+public enum EStatType
 {
     SPD = 0,
     WEIGHT = 1,
@@ -10,14 +10,14 @@ public enum EStat
     MP = 3
 }
 
-public struct PlayerStat
+public class PlayerStat
 {
     private int current_;
     private int min_;
     private int max_;
 
     //실제 수치(float형)
-    private float value_;
+    public float value_ { get; private set; }
     public float currentValue_ { get; private set; }
 
     public int current
@@ -40,8 +40,7 @@ public struct PlayerStat
         set { if (max_ > 10) max_ = 10; }
     }
 
-
-    public void Initialize(int _current, int _min, int _max, float _value)
+    public PlayerStat(int _current, int _min, int _max, float _value)
     {
         min_ = _min;
         max_ = _max;
@@ -66,7 +65,7 @@ public class PlayerStatData
     public PlayerStat weight;       //Enum: 2
     public PlayerStat hp;           //Enum: 3
     public PlayerStat mp;           //Enum: 4
-
+    public Dictionary<EStatType, PlayerStat> Data { get; private set; }
 
     public PlayerStatData(StatScriptableObject _so)
     {
@@ -75,9 +74,24 @@ public class PlayerStatData
 
     public void Initialize(StatScriptableObject _so)
     {
-        speed.Initialize(_so.startSpeed, DefineClass.PlayerStat_MinSpeed, _so.maxSpeed, DefineClass.PlayerStat_SpeedValue);
-        weight.Initialize(_so.weight, 1, 20, DefineClass.PlayerStat_WeightValue);
-        hp.Initialize(_so.maxHP, DefineClass.PlayerStat_MinHP, _so.maxHP, 0.0f);
-        mp.Initialize(0, DefineClass.PlayerStat_MinMP, _so.maxMP, 0.0f);
+        speed = new PlayerStat
+            (_so.startSpeed, DefineClass.PlayerStat_MinSpeed, _so.maxSpeed, DefineClass.PlayerStat_SpeedValue);
+
+        weight = new PlayerStat
+            (_so.weight, 1, 20, DefineClass.PlayerStat_WeightValue);
+
+        hp = new PlayerStat
+            (_so.maxHP, DefineClass.PlayerStat_MinHP, _so.maxHP, 0.0f);
+
+        mp = new PlayerStat
+            (0, DefineClass.PlayerStat_MinMP, _so.maxMP, 0.0f);
+
+
+        Data = new Dictionary<EStatType, PlayerStat>();
+
+        Data.Add(EStatType.SPD, speed);
+        Data.Add(EStatType.WEIGHT, weight);
+        Data.Add(EStatType.HP, hp);
+        Data.Add(EStatType.MP, mp);
     }
 }

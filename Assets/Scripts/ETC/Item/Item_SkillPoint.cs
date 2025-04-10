@@ -12,7 +12,10 @@ public class Item_SkillPoint : Item_Base
 
     public override void Ability(PlayerCharacter _player)
     {
-        _player.statHandler.statData.mp.current += 1;
+        PlayerStatHandler _ps = _player.statHandler;
+        int _curMP = _ps.GetCurrentStat(EStatType.MP);
+
+        _ps.ChangeCurrentStat(EStatType.SPD, _curMP + 1);
         Delete();
     }
 }

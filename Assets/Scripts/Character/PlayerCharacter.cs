@@ -36,7 +36,7 @@ public class PlayerCharacter : MonoBehaviour
     protected virtual void Start()
     {
         GameManager.Instance.Player = this;
-        rb.gravityScale = statHandler.statData.weight.currentValue_;
+        rb.gravityScale = statHandler.GetCurrentValueStat(EStatType.WEIGHT);
     }
 
     private void OnDisable()
@@ -48,6 +48,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
+            statHandler.AddSkillPoint();
             statHandler.AddSkillPoint();
             skillHandler.ActiveSkill();
         }

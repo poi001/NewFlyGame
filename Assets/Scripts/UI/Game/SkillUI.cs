@@ -20,6 +20,7 @@ public class SkillUI : MonoBehaviour
     private int currentSkillNum;
 
     private PlayerCharacter player;
+    private PlayerStatHandler stat;
 
     private void Start()
     {
@@ -36,8 +37,9 @@ public class SkillUI : MonoBehaviour
     private void Init()
     {
         player = GameManager.Instance.Player;
+        stat = player.statHandler;
 
-        maxSkillNum = player.statHandler.statData.mp.max;
+        maxSkillNum = stat.GetMaxStat(EStatType.MP);
         currentSkillNum = maxSkillNum;
 
         for (int i = 0; i < maxSkillNum; i++) skillImage[i].skillBackGroundImage.gameObject.SetActive(true);
@@ -46,17 +48,17 @@ public class SkillUI : MonoBehaviour
 
     private void OnSubscribe()
     {
-        player.statHandler.OnChangeSkillPoint += ChangedSkillPoint;
+        stat.OnChangeStat += ChangedSkillPoint;
     }
 
     private void OffSubscribe()
     {
-        player.statHandler.OnChangeSkillPoint -= ChangedSkillPoint;
+        stat.OnChangeStat -= ChangedSkillPoint;
     }
 
     private void ChangedSkillPoint()
     {
-        currentSkillNum = player.statHandler.statData.mp.current;
+        currentSkillNum = stat.GetCurrentStat(EStatType.MP);
 
         ChangeImage(currentSkillNum);
     }

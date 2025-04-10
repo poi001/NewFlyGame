@@ -33,4 +33,9 @@ public class PlayerSkillHandler : MonoBehaviour
         int _mp = character.statHandler.UseSkill();
         if(_mp > 0) Skills[_mp - 1].ActiveSkill();
     }
+
+    public void ChangeStat()
+    {
+
+    }
 }

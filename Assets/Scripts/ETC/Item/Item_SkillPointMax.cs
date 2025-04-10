@@ -12,7 +12,10 @@ public class Item_SkillPointMax : Item_Base
 
     public override void Ability(PlayerCharacter _player)
     {
-        _player.statHandler.statData.mp.current = _player.statHandler.statData.mp.max;
+        PlayerStatHandler _ps = _player.statHandler;
+        int _maxMP = _ps.GetMaxStat(EStatType.MP);
+
+        _ps.ChangeCurrentStat(EStatType.MP, _maxMP);
         Delete();
     }
 }

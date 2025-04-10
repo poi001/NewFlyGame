@@ -5,15 +5,11 @@ using UnityEngine.TextCore.Text;
 
 public class Skill_Dash : SkillBase
 {
-    int beforeSpeed;
-
     public override void ActiveSkill()
     {
         time = 1.0f;
-        beforeSpeed = character.statHandler.statData.speed.current;
 
         CreateBuff(EBuffType.DASH, time);
-
         OnDash();
     }
 
@@ -24,14 +20,14 @@ public class Skill_Dash : SkillBase
 
     private void OnDash()
     {
-        character.motionTrail.OnMotionTrail(time);
+        character.motionTrail.OnMotionTrail(time, 0.05f);
         character.gameObject.layer = DefineClass.Layer_PlayerDamaged;
-        character.movement.ChangeSpeed(character.statHandler.statData.speed.max, 2.0f);
+        character.movement.SetOnStationaryMoveSpeed(stat.GetValueStat(EStatType.SPD) * stat.GetMaxStat(EStatType.SPD) * 2.0f);
     }
 
     private void OffDash()
     {
         character.gameObject.layer = DefineClass.Layer_Player;
-        character.movement.ChangeSpeed(beforeSpeed);
+        character.movement.SetOffStationaryMoveSpeed(stat.GetCurrentValueStat(EStatType.SPD));
     }
 }

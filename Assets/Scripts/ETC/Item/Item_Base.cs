@@ -28,12 +28,7 @@ public abstract class Item_Base : MonoBehaviour, IAbility
     {
         if(collision.gameObject.CompareTag(DefineClass.Tag_Player))
         {
-            if (collision.gameObject.TryGetComponent<PlayerCharacter>(out player))
-            {
-                Debug.Log("OnTriggerEnter2D: " + player.statHandler.statData.speed.current);
-                Ability(player);
-            }
-            else Debug.LogError("Item_Base -> OnTriggerEnter2D -> TryGetComponent is Null");
+            if (collision.gameObject.TryGetComponent<PlayerCharacter>(out player)) Ability(player);
         }
     }
 

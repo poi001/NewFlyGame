@@ -14,6 +14,7 @@ public class HPUI : MonoBehaviour
     private int currentHP;
 
     private PlayerCharacter player;
+    private PlayerStatHandler stat;
 
     private void Start()
     {
@@ -30,8 +31,9 @@ public class HPUI : MonoBehaviour
     private void Init()
     {
         player = GameManager.Instance.Player;
+        stat = player.statHandler;
 
-        maxHP = player.statHandler.statData.hp.max;
+        maxHP = stat.GetMaxStat(EStatType.HP);
         currentHP = maxHP;
 
         for (int i = 0; i < maxHP; i++) hpImage[i].gameObject.SetActive(true);
@@ -40,14 +42,14 @@ public class HPUI : MonoBehaviour
 
     private void OnSubscribe()
     {
-        player.statHandler.OnDamage += Damaged;
-        player.statHandler.OnHeal += Healed;
+        stat.OnDamage += Damaged;
+        stat.OnHeal += Healed;
     }
 
     private void OffSubscribe()
     {
-        player.statHandler.OnDamage -= Damaged;
-        player.statHandler.OnHeal -= Healed;
+        stat.OnDamage -= Damaged;
+        stat.OnHeal -= Healed;
     }
 
     private void Damaged()

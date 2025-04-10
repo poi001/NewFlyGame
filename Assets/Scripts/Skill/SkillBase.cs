@@ -13,12 +13,14 @@ public interface ISkill
 public abstract class SkillBase : ISkill
 {
     protected PlayerCharacter character;
+    protected PlayerStatHandler stat;
     public float time { get; protected set; }
     protected Buff buff;
 
     public void Init(PlayerCharacter _player)
     {
         character = _player;
+        stat = _player.statHandler;
     }
 
     public abstract void ActiveSkill();

@@ -9,44 +9,43 @@ using UnityEngine.TextCore.Text;
 public class PlayerStatHandler : MonoBehaviour
 {
     [SerializeField] private StatScriptableObject statSO;
-    public PlayerStatData statData { get; private set; }
+    private PlayerStatData statData;
     public string characterName { get; private set; }
     public string description { get; private set; }
 
-    public event Action OnDamage;           //대미지 받을 때
-    public event Action OnHeal;             //회복할 때
-    public event Action OnDeath;            //죽을 때
-    public event Action OnChangeSkillPoint; //스킬포인트가 변경될 때
+    public event Action OnDamage;               //대미지 받을 때
+    public event Action OnHeal;                 //회복할 때
+    public event Action OnDeath;                //죽을 때
+    public event Action OnChangeStat;           //스탯이 변경될 때
 
     private void Awake()
     {
         //Start가 아닌 Awake에 선언한 이유는 PlayerCharacter클래스에서 StatData를 받아와야 하는데
         //그 시점보다 먼저 선언해야하기 떄문에 Awake에 선언했다.
         statData = new PlayerStatData(statSO);
+
         characterName = statSO.characterName;
         description = statSO.description;
     }
 
-    public void ChangeStat(EStat _eStat, int _stat)
+    private void OnDestroy()
     {
-        switch (_eStat)
-        {
-            case EStat.SPD:
-                statData.speed.current = _stat;
-                break;
-            case EStat.WEIGHT:
-                statData.weight.current = _stat;
-                break;
-            case EStat.HP:
-                statData.hp.current = _stat;
-                break;
-            case EStat.MP:
-                statData.mp.current = _stat;
-                break;
-            default:
-                break;
-        }
+        OnDamage = null;
+        OnHeal = null;
+        OnDeath = null;
+        OnChangeStat = null;
     }
+
+    //스탯 변경 함수
+    public void ChangeCurrentStat(EStatType _eStat, int _stat) { statData.Data[_eStat].current = _stat; OnChangeStat?.Invoke(); }
+    public void ChangeMinStat(EStatType _eStat, int _stat) { statData.Data[_eStat].min = _stat; OnChangeStat?.Invoke(); }
+    public void ChangeMaxStat(EStatType _eStat, int _stat) { statData.Data[_eStat].max = _stat; OnChangeStat?.Invoke(); }
+    //스탯을 받아오는 함수
+    public int GetCurrentStat(EStatType _eStat) { return statData.Data[_eStat].current; }
+    public int GetMinStat(EStatType _eStat) { return statData.Data[_eStat].min; }
+    public int GetMaxStat(EStatType _eStat) { return statData.Data[_eStat].max; }
+    public float GetCurrentValueStat(EStatType _eStat) { return statData.Data[_eStat].currentValue_; }
+    public float GetValueStat(EStatType _eStat) { return statData.Data[_eStat].value_; }
 
     private void Dead()
     {
@@ -59,7 +58,7 @@ public class PlayerStatHandler : MonoBehaviour
 
     public void Damaged()
     {
-        ChangeStat(EStat.HP, statData.hp.current - 1);
+        ChangeCurrentStat(EStatType.HP, statData.hp.current - 1);
 
         OnDamage?.Invoke();
 
@@ -68,7 +67,7 @@ public class PlayerStatHandler : MonoBehaviour
 
     public void Healed()
     {
-        ChangeStat(EStat.HP, statData.hp.current + 1);
+        ChangeCurrentStat(EStatType.HP, statData.hp.current + 1);
 
         OnHeal?.Invoke();
     }
@@ -86,53 +85,18 @@ public class PlayerStatHandler : MonoBehaviour
         else
         {
             _sp = statData.mp.current;
-            ChangeStat(EStat.MP, 0);
+            ChangeCurrentStat(EStatType.MP, 0);
         }
 
-        OnChangeSkillPoint?.Invoke();
+        OnChangeStat?.Invoke();
 
         return _sp;
     }
 
     public void AddSkillPoint()
     {
-        ChangeStat(EStat.MP, statData.mp.current + 1);
+        ChangeCurrentStat(EStatType.MP, statData.mp.current + 1);
 
-        OnChangeSkillPoint?.Invoke();
-    }
-
-    public void ActiveBuff(PlayerCharacter _player, EBuffType _buffType)
-    {
-        switch (_buffType)
-        {
-            case EBuffType.SPRINTER:
-                {
-                    //_player.motionTrail.OnMotionTrail(time);
-                    //character.gameObject.layer = DefineClass.Layer_PlayerDamaged;
-                    //character.movement.ChangeSpeed(character.statHandler.statData.speed.max, 2.0f);
-                }
-                break;
-
-            case EBuffType.LIGHTWEIGHT:
-                {
-
-                }
-                break;
-
-            case EBuffType.DASH:
-                {
-
-                }
-                break;
-
-            case EBuffType.SPEEDUP:
-                {
-
-                }
-                break;
-
-            default:
-                break;
-        }
+        OnChangeStat?.Invoke();
     }
 }

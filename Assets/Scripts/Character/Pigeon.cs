@@ -10,8 +10,8 @@ public class Pigeon : PlayerCharacter
 
         List<SkillBase> _skillList = new List<SkillBase>();
 
-        //_skillList[0]
-        _skillList.Add(new Skill_Dash());// = new Skill_Dash();
+        _skillList.Add(new Skill_Sprinter());
+        _skillList.Add(new Skill_Dash());
         //_skillList[2] = new Skill_Dash();
         //_skillList[3] = new Skill_Dash();
 
