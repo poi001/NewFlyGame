@@ -9,7 +9,8 @@ public enum EItemType
     NULL = 0,
     SPEEDUP = 1,
     SKILLPOINT = 2,
-    SKILLPOINT_Max = 3
+    SKILLPOINT_Max = 3,
+    HPUP = 4
 }
 
 public interface IAbility
@@ -18,11 +19,13 @@ public interface IAbility
     public void Delete();
 }
 
-public abstract class Item_Base : MonoBehaviour, IAbility
+public class Item_Base : MonoBehaviour, IAbility
 {
     [SerializeField] protected EItemType itemType;
     [SerializeField] protected int addStat;
+
     protected PlayerCharacter player;
+    protected ParticleSystem particle;
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
@@ -32,7 +35,12 @@ public abstract class Item_Base : MonoBehaviour, IAbility
         }
     }
 
-    public abstract void Ability(PlayerCharacter _player);
+    public virtual void Ability(PlayerCharacter _player)
+    {
+        GameManager gm_ = GameManager.Instance;
+
+        gm_.ActiveParticle(EParticleType.ITEM, gameObject.transform.position);
+    }
 
     public void Delete()
     {

@@ -49,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag(DefineClass.Tag_Obstacle))
         {
             OnDamaged();
+            GameManager.Instance.ActiveParticle(EParticleType.CRASH, gameObject.transform.position);
+            SoundManager.instance.PlaySFX(SoundManager.ESFXType.SFX_CRASH);
         }
     }
 

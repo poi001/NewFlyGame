@@ -45,6 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2330089919316438804, guid: 30b97cbbf1e39944c8f357aa39db868d, type: 3}
-  PlayerObject: {fileID: 0}
+  PlayerObject: {fileID: 2840850625461474539, guid: 30b97cbbf1e39944c8f357aa39db868d, type: 3}
   UICanavas: {fileID: 5397833818597300375, guid: ff4148dccd2dcf24abd15924cbe806c0, type: 3}
   Grid: {fileID: 5692338332926282340, guid: da80c96a5beb21d4182566a24adc1d5a, type: 3}
+  Item: {fileID: 6189129277713860459, guid: 76d851a95e2088f4fad728b5637db4de, type: 3}
+  Particles:
+    <GetItemParticle>k__BackingField: {fileID: 8038344524183138613, guid: 0277167a12290af47801444830a2be97, type: 3}
+    <CrashParticle>k__BackingField: {fileID: 6192724089161036641, guid: e17d9a3f04750764c8c0a7a0461e4c3b, type: 3}

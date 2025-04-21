@@ -12,10 +12,12 @@ public class Item_SpeedUp : Item_Base
 
     public override void Ability(PlayerCharacter _player)
     {
+        base.Ability(player);
+
         PlayerStatHandler _ps = _player.statHandler;
         int _curSPD = _ps.GetCurrentStat(EStatType.SPD);
 
-        _ps.ChangeCurrentStat(EStatType.SPD, _curSPD + 1);
+        _ps.ChangeCurrentStat(EStatType.SPD, _curSPD + addStat);
         Delete();
     }
 }
