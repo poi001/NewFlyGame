@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public interface ISkill
 {
@@ -25,7 +21,7 @@ public abstract class SkillBase : ISkill
 
     public abstract void ActiveSkill();
 
-    public abstract void DeactiveSkill();
+    public virtual void DeactiveSkill() { }
 
     protected void CreateBuff(EBuffType _buffType, float _time)
     {
