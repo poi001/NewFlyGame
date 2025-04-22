@@ -163,6 +163,7 @@ public class PlayerMovement : MonoBehaviour
         blinkCoroutine_ = StartCoroutine(StartBlinkPlayer());
         Invoke("StopBlinkPlayer", 1.0f);
 
+        rb.velocity = Vector2.zero;
         rb.AddForce(new Vector2(-10.0f, 1.0f), ForceMode2D.Impulse);
 
         character.statHandler.Damaged();
