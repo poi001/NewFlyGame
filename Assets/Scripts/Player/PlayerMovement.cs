@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         {
             OnDamaged();
             GameManager.Instance.ActiveParticle(EParticleType.CRASH, gameObject.transform.position);
-            SoundManager.instance.PlaySFX(SoundManager.ESFXType.SFX_CRASH);
+            SoundManager.Instance.PlaySFX(SoundManager.ESFXType.SFX_CRASH);
         }
     }
 

@@ -20,7 +20,7 @@ public class SoundManager : MonoBehaviour
         SFX_DASH = 5
     }
 
-    public static SoundManager instance;
+    public static SoundManager Instance;
 
     //audio clip 담을 수 있는 배열
     [SerializeField] private AudioClip[] bgms;
@@ -32,7 +32,7 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null) instance = this;
+        if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);

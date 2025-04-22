@@ -31,7 +31,11 @@ public class Item_Base : MonoBehaviour, IAbility
     {
         if(collision.gameObject.CompareTag(DefineClass.Tag_Player))
         {
-            if (collision.gameObject.TryGetComponent<PlayerCharacter>(out player)) Ability(player);
+            if (collision.gameObject.TryGetComponent<PlayerCharacter>(out player))
+            {
+                Ability(player);
+                SoundManager.Instance.PlaySFX(SoundManager.ESFXType.SFX_BTN);
+            }
         }
     }
 

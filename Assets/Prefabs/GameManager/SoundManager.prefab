@@ -306,7 +306,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   sfxs:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 4a6d21a9d40f15e4195a15504d787978, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 8300000, guid: 670bf0246a85d1741b4ac009be523b66, type: 3}
