@@ -5,6 +5,7 @@ public class Skill_Dash : SkillBase
     {
         time = 1.0f;
 
+        OnDashSound(1.0f, 1.2f);
         CreateBuff(EBuffType.DASH, time);
         OnDash();
     }

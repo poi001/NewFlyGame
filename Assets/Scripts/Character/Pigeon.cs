@@ -12,13 +12,11 @@ public class Pigeon : PlayerCharacter
 
         _skillList.Add(new Skill_Sprinter());
         _skillList.Add(new Skill_Dash());
-        //_skillList[2] = new Skill_Dash();
-        //_skillList[3] = new Skill_Dash();
+        _skillList.Add(new Skill_WeightDown());
+        _skillList.Add(new Skill_SpeedUp());
 
         foreach (SkillBase skill in _skillList) skill.Init(this);
 
         skillHandler.Init(_skillList.ToArray());
     }
-
-
 }

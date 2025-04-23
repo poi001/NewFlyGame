@@ -3,6 +3,7 @@ public class Skill_WeightDown : SkillBase
 {
     public override void ActiveSkill()
     {
+        OnSkillSound();
         OnWeightDown();
     }
 
@@ -10,6 +11,5 @@ public class Skill_WeightDown : SkillBase
     {
         int _stack = stat.GetCurrentStat(EStatType.WEIGHT);
         stat.ChangeCurrentStat(EStatType.WEIGHT, _stack + 1);
-        //ÆÄÆ¼Å¬
     }
 }

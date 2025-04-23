@@ -19,9 +19,11 @@ public class PlayerMovement : MonoBehaviour
     private bool isSprint = false;
     private bool isUp = false;
 
-    private bool stationaryMoveSpeed = false;
+    private bool isStationaryMoveSpeed = false;
 
     Coroutine blinkCoroutine_;
+
+    public int AddSpeedStack = 0;
 
     private void Start()
     {
@@ -112,9 +114,10 @@ public class PlayerMovement : MonoBehaviour
     private void ApplyMovement(Vector2 direction)
     {
         //Speed
-        if(!stationaryMoveSpeed)
+        if (!isStationaryMoveSpeed)
         {
-            float _currentSpeed = character.statHandler.GetCurrentValueStat(EStatType.SPD);
+            float _addSpeed = character.statHandler.GetValueStat(EStatType.SPD) * AddSpeedStack;
+            float _currentSpeed = character.statHandler.GetCurrentValueStat(EStatType.SPD) + _addSpeed;
             if (isSprint) speed = _currentSpeed * 2.0f;
             else speed = _currentSpeed;
         }
@@ -164,7 +167,7 @@ public class PlayerMovement : MonoBehaviour
         Invoke("StopBlinkPlayer", 1.0f);
 
         rb.velocity = Vector2.zero;
-        rb.AddForce(new Vector2(-10.0f, 1.0f), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(-5.0f, 1.0f), ForceMode2D.Impulse);
 
         character.statHandler.Damaged();
     }
@@ -195,24 +198,24 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateMovementStat()
     {
-        speed = character.statHandler.GetCurrentValueStat(EStatType.SPD);
+        if(!isStationaryMoveSpeed) speed = character.statHandler.GetCurrentValueStat(EStatType.SPD);
         weight = character.statHandler.GetCurrentValueStat(EStatType.WEIGHT);
     }
 
     public void SetOnStationaryMoveSpeed(float _spd)
     {
-        if(!stationaryMoveSpeed)
+        if(!isStationaryMoveSpeed)
         {
-            stationaryMoveSpeed = true;
+            isStationaryMoveSpeed = true;
             speed = _spd;
         }
     }
 
     public void SetOffStationaryMoveSpeed(float _spd)
     {
-        if (stationaryMoveSpeed)
+        if (isStationaryMoveSpeed)
         {
-            stationaryMoveSpeed = false;
+            isStationaryMoveSpeed = false;
             speed = character.statHandler.GetCurrentValueStat(EStatType.SPD);
         }
     }

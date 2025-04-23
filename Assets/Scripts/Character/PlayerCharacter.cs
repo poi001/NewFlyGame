@@ -50,6 +50,7 @@ public class PlayerCharacter : MonoBehaviour
         {
             statHandler.AddSkillPoint();
             statHandler.AddSkillPoint();
+            statHandler.AddSkillPoint();
             skillHandler.ActiveSkill();
         }
     }

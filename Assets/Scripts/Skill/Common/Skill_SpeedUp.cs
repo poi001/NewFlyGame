@@ -3,6 +3,7 @@ public class Skill_SpeedUp : SkillBase
 {
     public override void ActiveSkill()
     {
+        OnSkillSound();
         OnSpeedUp();
     }
 
@@ -10,6 +11,5 @@ public class Skill_SpeedUp : SkillBase
     {
         int _stack = stat.GetCurrentStat(EStatType.SPD);
         stat.ChangeCurrentStat(EStatType.SPD, _stack + 1);
-        //ÆÄÆ¼Å¬
     }
 }

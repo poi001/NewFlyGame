@@ -29,4 +29,19 @@ public abstract class SkillBase : ISkill
         character.skillHandler.buffSystem.AddBuff(buff);
         buff.EndBuff += DeactiveSkill;
     }
+
+    protected void OnSkillSound(float _volume = 1.0f, float _pitch = 1.0f)
+    {
+        SoundManager.Instance.PlaySFX(SoundManager.ESFXType.SFX_SKILL, _volume, _pitch);
+    }
+
+    protected void OnDashSound(float _volume = 1.0f, float _pitch = 1.0f)
+    {
+        SoundManager.Instance.PlaySFX(SoundManager.ESFXType.SFX_DASH, _volume, _pitch);
+    }
+
+    protected void OnSprintSound(float _volume = 1.0f, float _pitch = 1.0f)
+    {
+        SoundManager.Instance.PlaySFX(SoundManager.ESFXType.SFX_SPRINT, _volume, _pitch);
+    }
 }

@@ -78,7 +78,7 @@ public class PlayerStatData
             (_so.startSpeed, DefineClass.PlayerStat_MinSpeed, _so.maxSpeed, DefineClass.PlayerStat_SpeedValue);
 
         weight = new PlayerStat
-            (_so.weight, 1, 20, DefineClass.PlayerStat_WeightValue);
+            (_so.weight, 1, 10, DefineClass.PlayerStat_WeightValue);
 
         hp = new PlayerStat
             (_so.maxHP, DefineClass.PlayerStat_MinHP, _so.maxHP, 0.0f);

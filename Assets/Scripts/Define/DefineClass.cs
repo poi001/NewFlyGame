@@ -8,7 +8,7 @@ public class DefineClass
     //¹«°Ô
     public const int PlayerStat_MinWeight = 1;
     public const int PlayerStat_MaxWeight = 20;
-    public const float PlayerStat_WeightValue = 1.0f;
+    public const float PlayerStat_WeightValue = 1.5f;
     //HP
     public const int PlayerStat_MinHP = 0;
     //MP

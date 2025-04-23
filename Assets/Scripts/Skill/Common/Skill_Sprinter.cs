@@ -7,7 +7,7 @@ public class Skill_Sprinter : SkillBase
 {
     public override void ActiveSkill()
     {
-        time = 8.0f;
+        time = 5.0f;
 
         CreateBuff(EBuffType.SPRINTER, time);
         OnSprint();
@@ -20,28 +20,17 @@ public class Skill_Sprinter : SkillBase
 
     private void OnSprint()
     {
-        foreach (var item in character.skillHandler.buffSystem.GetBuffList())
-        {
-            if(item.Type == EBuffType.DASH)
-            {
-                item.EndBuff += StartSprint;
-                return;
-            }
-        }
-
+        OnSprintSound(1.0f, 0.75f);
         StartSprint();
     }
 
     private void OffSprint()
     {
-        character.movement.SetOffStationaryMoveSpeed(stat.GetCurrentValueStat(EStatType.SPD));
+        character.movement.AddSpeedStack = 0;
     }
 
     private void StartSprint()
     {
-        int _currentStat = stat.GetCurrentStat(EStatType.SPD);
-        float _valueStat = stat.GetValueStat(EStatType.SPD);
-        float _speed = _valueStat * (_currentStat + 3);
-        character.movement.SetOnStationaryMoveSpeed(_speed);
+        character.movement.AddSpeedStack = 2;
     }
 }

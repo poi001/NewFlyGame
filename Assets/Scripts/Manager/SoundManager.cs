@@ -17,7 +17,8 @@ public class SoundManager : MonoBehaviour
         SFX_DOWN = 2,
         SFX_CRASH = 3,
         SFX_SKILL = 4,
-        SFX_DASH = 5
+        SFX_DASH = 5,
+        SFX_SPRINT = 6
     }
 
     public static SoundManager Instance;
@@ -49,8 +50,9 @@ public class SoundManager : MonoBehaviour
         audioBgm.Stop();
     }
 
-    public void PlaySFX(ESFXType _sfxType, float _volume = 1.0f)
+    public void PlaySFX(ESFXType _sfxType, float _volume = 1.0f, float _pitch = 1.0f)
     {
+        audioSfx.pitch = _pitch;
         audioSfx.PlayOneShot(sfxs[(int)_sfxType], _volume);
     }
 
