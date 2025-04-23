@@ -124,8 +124,8 @@ public class PlayerMovement : MonoBehaviour
 
         //Weight
         float _currentWeight = character.statHandler.GetCurrentValueStat(EStatType.WEIGHT);
-        if (isUp) weight = _currentWeight * -2.0f;
-        else weight = _currentWeight;
+        if (isUp) weight = _currentWeight * -1.0f;
+        else weight = character.statHandler.GetValueStat(EStatType.WEIGHT) * character.statHandler.GetInitStat(EStatType.WEIGHT);
 
         //Movement
         rb.AddForce(direction * speed);
@@ -147,12 +147,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckGravity()
     {
+
         if (rb.velocity.y < -15.0f)
         {
             float x = rb.velocity.x;
             rb.velocity = new Vector2(x, -15.0f);
         }
-        if (rb.velocity.y > 7.5f)
+        if (rb.velocity.y > 10.0f)
         {
             float x = rb.velocity.x;
             rb.velocity = new Vector2(x, 7.5f);

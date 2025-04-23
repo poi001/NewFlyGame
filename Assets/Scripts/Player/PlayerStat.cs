@@ -13,8 +13,9 @@ public enum EStatType
 public class PlayerStat
 {
     private int current_;
-    private int min_;
-    private int max_;
+    public int min;
+    public int max;
+    public int Init { get; private set; }
 
     //실제 수치(float형)
     public float value_ { get; private set; }
@@ -23,38 +24,22 @@ public class PlayerStat
     public int current
     {
         get { return current_; }
-        set 
-        { 
-            current_ = Mathf.Clamp(value, min_, max_);
+        set
+        {
+            current_ = Mathf.Clamp(value, min, max);
             currentValue_ = value_ * current_;
         }
-    }
-    public int min
-    {
-        get { return min_; }
-        set { if (min_ < 0) min_ = 0; }
-    }
-    public int max
-    {
-        get { return max_; }
-        set { if (max_ > 10) max_ = 10; }
     }
 
     public PlayerStat(int _current, int _min, int _max, float _value)
     {
-        min_ = _min;
-        max_ = _max;
+        min = _min;
+        max = _max;
         value_ = _value;
         current_ = _current;
+        Init = _current;
         currentValue_ = _value * _current;
 
-        Check();
-    }
-
-    public void Check()
-    {
-        min = min_;
-        max = max_;
         current = current_;
     }
 }
@@ -78,7 +63,7 @@ public class PlayerStatData
             (_so.startSpeed, DefineClass.PlayerStat_MinSpeed, _so.maxSpeed, DefineClass.PlayerStat_SpeedValue);
 
         weight = new PlayerStat
-            (_so.weight, 1, 10, DefineClass.PlayerStat_WeightValue);
+            (_so.weight, DefineClass.PlayerStat_MinWeight, DefineClass.PlayerStat_MaxWeight, DefineClass.PlayerStat_WeightValue);
 
         hp = new PlayerStat
             (_so.maxHP, DefineClass.PlayerStat_MinHP, _so.maxHP, 0.0f);

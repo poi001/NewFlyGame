@@ -46,6 +46,7 @@ public class PlayerStatHandler : MonoBehaviour
     public int GetMaxStat(EStatType _eStat) { return statData.Data[_eStat].max; }
     public float GetCurrentValueStat(EStatType _eStat) { return statData.Data[_eStat].currentValue_; }
     public float GetValueStat(EStatType _eStat) { return statData.Data[_eStat].value_; }
+    public float GetInitStat(EStatType _eStat) { return statData.Data[_eStat].Init; }
 
     private void Dead()
     {
