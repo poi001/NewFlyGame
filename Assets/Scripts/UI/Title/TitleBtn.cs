@@ -24,20 +24,31 @@ public class TitleBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnBtnClick()
     {
+        SoundManager.Instance.PlaySFX(SoundManager.ESFXType.SFX_BTN, 1.0f, 1.5f);
+
         switch (currentType)
         {
             case EBtnType.GAMESTART:
                 Debug.Log("GAMESTART");
                 break;
+
             case EBtnType.RANK:
                 Debug.Log("RANK");
                 break;
+
             case EBtnType.OPTIONS:
                 Instantiate(GameManager.Instance.OptionsUICanavas, Vector2.zero, Quaternion.identity);
                 break;
+
             case EBtnType.EXIT:
-                Debug.Log("EXIT");
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+#else
+            // 실제 게임 실행 중일 때는 애플리케이션을 종료합니다.
+            Application.Quit();
+#endif
                 break;
+
             default:
                 Debug.Log("default");
                 break;

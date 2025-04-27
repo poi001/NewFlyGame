@@ -46,6 +46,6 @@ public class OptionsUI : MonoBehaviour
 
     public void OnClickExitBtn()
     {
-        Destroy(gameObject);
+        Destroy(transform.parent.parent.gameObject);
     }
 }
