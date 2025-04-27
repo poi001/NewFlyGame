@@ -33,7 +33,7 @@ public class TitleBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 Debug.Log("RANK");
                 break;
             case EBtnType.OPTIONS:
-                Debug.Log("OPTIONS");
+                Instantiate(GameManager.Instance.OptionsUICanavas, Vector2.zero, Quaternion.identity);
                 break;
             case EBtnType.EXIT:
                 Debug.Log("EXIT");

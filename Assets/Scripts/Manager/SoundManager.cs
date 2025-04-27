@@ -39,9 +39,15 @@ public class SoundManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void PlayBGM(EBGMType _bgmType)
+    private void Start()
+    {
+        PlayBGM(EBGMType.BGM_TITLE);
+    }
+
+    public void PlayBGM(EBGMType _bgmType, float _volume = 1.0f)
     {
         audioBgm.clip = bgms[(int)_bgmType];
+        audioBgm.volume = _volume;
         audioBgm.Play();
     }
 

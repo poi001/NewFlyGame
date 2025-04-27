@@ -39,6 +39,7 @@ public class DefineClass
     public const string UI_Distance = "DistanceUI";
     public const string UI_Timer = "TimerUI";
     public const string UI_GameResult = "GameResultBackGround";
+    public const string UI_Options = "GameResultBackGround";
 
     //Scene
     //Scene Name
