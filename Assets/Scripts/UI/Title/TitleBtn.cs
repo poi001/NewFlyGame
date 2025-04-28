@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -29,7 +27,7 @@ public class TitleBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         switch (currentType)
         {
             case EBtnType.GAMESTART:
-                Debug.Log("GAMESTART");
+                GameManager.Instance.SceneManagerManager__.ChangeScene(DefineClass.Scene_SelectCharacter);
                 break;
 
             case EBtnType.RANK:

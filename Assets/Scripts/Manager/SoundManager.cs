@@ -41,7 +41,7 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        PlayBGM(EBGMType.BGM_TITLE);
+        //PlayBGM(EBGMType.BGM_TITLE);
     }
 
     public void PlayBGM(EBGMType _bgmType, float _volume = 1.0f)

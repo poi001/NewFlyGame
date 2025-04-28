@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgms:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: d4937fa472ff5b04c995c953933c6335, type: 3}
   - {fileID: 0}
   sfxs:
   - {fileID: 8300000, guid: 4a6d21a9d40f15e4195a15504d787978, type: 3}

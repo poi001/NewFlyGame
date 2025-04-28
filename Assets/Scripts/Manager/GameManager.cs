@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
     public ParticleClass Particles;
 
     public UIManager UIManager_ = new UIManager();
+    public SceneManager_ SceneManagerManager__ = new SceneManager_();
 
     //temp
     private void Start()
