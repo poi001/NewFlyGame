@@ -52,8 +52,7 @@ public class PlayerStatHandler : MonoBehaviour
     {
         OnDeath?.Invoke();
 
-        Time.timeScale = 0;
-
+        GameManager.Instance.GameUIEnd();
         GameManager.Instance.UIManager_.GameResultUI_.gameObject.SetActive(true);
     }
 

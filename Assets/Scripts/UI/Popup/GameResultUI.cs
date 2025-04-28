@@ -20,8 +20,7 @@ public class GameResultUI : MonoBehaviour
 
     public void OnClickMainMenu()
     {
-        //SceneManager.LoadScene(DefineClass.Scene_ManMenu);
-        Debug.Log("OnClickMainMenu");
+        SceneManager.LoadScene(DefineClass.Scene_ManMenu);
     }
 
     public void OnClickExitGame()

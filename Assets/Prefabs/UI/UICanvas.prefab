@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc34be949d3ec144e97905628d9c8c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <timerText>k__BackingField: {fileID: 8256394589011809358}
+  <TimerText>k__BackingField: {fileID: 0}
 --- !u!1 &544915223308923217
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,7 +933,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3078656602481838005
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2193,7 +2193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b16dff5fd75074081e4ada9806a974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <distanceText>k__BackingField: {fileID: 4844968187754273631}
+  <DistanceText>k__BackingField: {fileID: 0}
 --- !u!1 &7670225954038869454
 GameObject:
   m_ObjectHideFlags: 0

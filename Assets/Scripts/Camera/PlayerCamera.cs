@@ -18,6 +18,6 @@ public class PlayerCamera : MonoBehaviour
             Vector3 _playerPos = GameManager.Instance.Player.gameObject.transform.localPosition;
             gameObject.transform.position = new Vector3(_playerPos.x, y, -10.0f);
         }
-        else Debug.LogError("GameManager.Instance.Player == null, PlayerCamera -> FixedUpdate");
+        //else Debug.LogError("GameManager.Instance.Player == null, PlayerCamera -> FixedUpdate");
     }
 }

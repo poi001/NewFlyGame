@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UIManager
@@ -22,7 +23,6 @@ public class UIManager
     //Popup UI [public]
     public GameResultUI GameResultUI_ { get { return gameResultUI; } private set { gameResultUI = value; } }
 
-
     public void Init(GameObject _uiCanavas)
     {
         //Game UI
@@ -33,5 +33,13 @@ public class UIManager
 
         //Popup UI
         _uiCanavas.transform.Find(DefineClass.UI_GameResult).TryGetComponent<GameResultUI>(out gameResultUI);
+    }
+
+    public void Destructor()
+    {
+        hpUI.gameObject.SetActive(false);
+        distanceUI.gameObject.SetActive(false);
+        skillUI.gameObject.SetActive(false);
+        timerUI.gameObject.SetActive(false);
     }
 }

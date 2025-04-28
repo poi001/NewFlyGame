@@ -45,4 +45,5 @@ public class DefineClass
     //Scene Name
     public const string Scene_ManMenu = "TitleScene";
     public const string Scene_Stage1 = "Stage1Scene";
+    public const string Scene_SelectCharacter = "SelectCharacter";
 }

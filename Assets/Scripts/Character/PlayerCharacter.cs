@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -37,11 +38,26 @@ public class PlayerCharacter : MonoBehaviour
     {
         GameManager.Instance.Player = this;
         rb.gravityScale = statHandler.GetCurrentValueStat(EStatType.WEIGHT);
+
+        statHandler.OnDeath += OnDeadPlayer;
     }
 
     private void OnDisable()
     {
-        if (GameManager.Instance != null && GameManager.Instance.Player != null) GameManager.Instance.Player = null;
+        statHandler.OnDeath -= OnDeadPlayer;
+    }
+
+    private void OnDeadPlayer()
+    {
+        GameManager.Instance.ActiveParticle(EParticleType.CRASH, transform.position);
+        StartCoroutine(Coroutine_DestroyPlayer());
+    }
+
+    IEnumerator Coroutine_DestroyPlayer()
+    {
+        yield return new WaitForSecondsRealtime(2.0f);
+        GameManager.Instance.Player = null;
+        Destroy(gameObject);
     }
 
     private void Update()

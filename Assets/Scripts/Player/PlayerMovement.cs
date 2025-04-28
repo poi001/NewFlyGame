@@ -25,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
 
     public int AddSpeedStack = 0;
 
+    private bool isDead = false;
+
     private void Start()
     {
         input = GetComponent<PlayerInputManager>();
@@ -65,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
         input.OnSkill += OnSkill;
 
         character.statHandler.OnChangeStat += UpdateMovementStat;
+        character.statHandler.OnDeath += PlayerIsDead;
     }
 
     private void OffSubs()
@@ -76,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
         input.OnSkill -= OnSkill;
 
         character.statHandler.OnChangeStat -= UpdateMovementStat;
+        character.statHandler.OnDeath -= PlayerIsDead;
     }
 
     private void MoveUp()
@@ -128,8 +132,16 @@ public class PlayerMovement : MonoBehaviour
         else weight = character.statHandler.GetValueStat(EStatType.WEIGHT) * character.statHandler.GetInitStat(EStatType.WEIGHT);
 
         //Movement
-        rb.AddForce(direction * speed);
-        rb.gravityScale = weight;
+        if(!isDead)
+        {
+            rb.AddForce(direction * speed);
+            rb.gravityScale = weight;
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+            rb.gravityScale = 0.0f;
+        }
 
         //속도 제한 함수 구현
         CheckSpeed();
@@ -219,5 +231,10 @@ public class PlayerMovement : MonoBehaviour
             isStationaryMoveSpeed = false;
             speed = character.statHandler.GetCurrentValueStat(EStatType.SPD);
         }
+    }
+
+    private void PlayerIsDead()
+    {
+        isDead = true;
     }
 }

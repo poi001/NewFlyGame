@@ -57,7 +57,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject PlayerObject;
     [Header("UI")]
     [SerializeField] private GameObject UICanavas;
-    [Header("UI")]
     public GameObject OptionsUICanavas;
     [Header("Tilemap")]
     [SerializeField] private GameObject Grid;
@@ -68,13 +67,29 @@ public class GameManager : MonoBehaviour
 
     public UIManager UIManager_ = new UIManager();
 
+    //temp
+    private void Start()
+    {
+        StartStage1();
+    }
+
     public void StartStage1()
     {
         //생성 순서 지켜야 함 ( 플레이어가 먼저, Stage에 들어갈 때 UIManager에 있는 UI를 띄우게 되는데, 그 때 플레이어 정보가 필요함 )
         Instantiate(PlayerObject, Vector2.zero, Quaternion.identity);   //Player
-        UIManager_.Init(Instantiate(UICanavas));                        //UI
+        GameUIStart();                                                  //UI
         Instantiate(Grid, Vector2.zero, Quaternion.identity);           //Grid
         Instantiate(Item, Vector2.zero, Quaternion.identity);           //Item
+    }
+
+    public void GameUIStart()
+    {
+        UIManager_.Init(Instantiate(UICanavas));
+    }
+
+    public void GameUIEnd()
+    {
+        UIManager_.Destructor();
     }
 
     public void ActiveParticle(EParticleType _particleType, Vector2 _pos)
