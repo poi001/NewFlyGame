@@ -7,16 +7,6 @@ public enum EParticleType
     CRASH = 1
 }
 
-public enum EVFXType
-{
-    SPRINT = 0,
-    WEIGHTDOWN = 1,
-    SPEEDUP = 2,
-    HEAL = 3,
-    ARMOR = 4,
-    SHIELD = 5
-}
-
 [System.Serializable]
 public class ParticleClass
 {
