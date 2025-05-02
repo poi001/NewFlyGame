@@ -14,14 +14,15 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isSprint = false;
     private bool isUp = false;
-
+    private bool isDead = false;
     private bool isStationaryMoveSpeed = false;
 
     Coroutine blinkCoroutine_;
 
     public int AddSpeedStack = 0;
 
-    private bool isDead = false;
+    private bool isInvincibleMode = false;
+    private float invincibleTimer = 0.0f;
 
     private void Start()
     {
@@ -37,6 +38,20 @@ public class PlayerMovement : MonoBehaviour
     private void OnDestroy()
     {
         OffSubs();
+    }
+
+    private void Update()
+    {
+        if (isInvincibleMode)
+        {
+            invincibleTimer -= Time.deltaTime;
+
+            if (invincibleTimer <= 0.0f)
+            {
+                isInvincibleMode = false;
+                StopBlinkPlayer();
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -80,29 +95,46 @@ public class PlayerMovement : MonoBehaviour
 
     private void MoveUp()
     {
-        isUp = true;
-        if(character.stateMachine.currentState_Enum != EPlayerState.SPRINT)
-            character.stateMachine.ChanageState(character.stateMachine.upState);
+        if (!isDead)
+        {
+            isUp = true;
+            if (character.stateMachine.currentState_Enum != EPlayerState.SPRINT)
+                character.stateMachine.ChanageState(character.stateMachine.upState);
+        }
+        else Idle();
     }
 
     private void MoveDown()
     {
-        isUp = false;
-        if (character.stateMachine.currentState_Enum != EPlayerState.SPRINT)
-            character.stateMachine.ChanageState(character.stateMachine.downState);
+        if (!isDead)
+        {
+            isUp = false;
+            if (character.stateMachine.currentState_Enum != EPlayerState.SPRINT)
+                character.stateMachine.ChanageState(character.stateMachine.downState);
+        }
+        else Idle();
     }
 
     private void OnSprint()
     {
-        dir = Vector2.right;
-        isSprint = true;
-        character.stateMachine.ChanageState(character.stateMachine.sprintState);
+        if (!isDead)
+        {
+            dir = Vector2.right;
+            isSprint = true;
+            character.stateMachine.ChanageState(character.stateMachine.sprintState);
+        }
+        else Idle();
     }
 
     private void MoveForward()
     {
         dir = Vector2.right;
         isSprint = false;
+        character.stateMachine.ChanageState(character.stateMachine.downState);
+    }
+
+    public void Idle()
+    {
         character.stateMachine.ChanageState(character.stateMachine.downState);
     }
 
@@ -170,15 +202,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDamaged()
     {
-        gameObject.layer = DefineClass.Layer_PlayerDamaged;
-
-        blinkCoroutine_ = StartCoroutine(StartBlinkPlayer());
-        Invoke("StopBlinkPlayer", 1.0f);
+        KnockBack(1.0f);
 
         rb.velocity = Vector2.zero;
         rb.AddForce(new Vector2(-5.0f, 1.0f), ForceMode2D.Impulse);
 
         character.statHandler.Damaged();
+    }
+
+    public void KnockBack(float _time)
+    {
+        isInvincibleMode = true;
+
+        gameObject.layer = DefineClass.Layer_PlayerDamaged;
+
+        invincibleTimer = _time;
+        if(blinkCoroutine_ != null) StopCoroutine(blinkCoroutine_);
+        blinkCoroutine_ = StartCoroutine(StartBlinkPlayer());
     }
 
     IEnumerator StartBlinkPlayer()

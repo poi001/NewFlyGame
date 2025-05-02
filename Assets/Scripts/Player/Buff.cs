@@ -10,7 +10,9 @@ public enum EBuffType
     SPRINTER = 1,
     LIGHTWEIGHT = 2,
     DASH = 3,
-    SPEEDUP = 4
+    SPEEDUP = 4,
+    SHIELD = 5,
+    SUPERARMOR = 6
 }
 
 public class Buff

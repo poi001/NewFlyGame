@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Pigeon : PlayerCharacter
 {
+    //[SerializeField] private GameObject SprintVFXObject;
+    //[SerializeField] private GameObject WeightDownVFXObject;
+    //[SerializeField] private GameObject SpeedUpVFXObject;
+
     protected override void Start()
     {
         base.Start();

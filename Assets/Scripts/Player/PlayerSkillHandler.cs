@@ -34,8 +34,8 @@ public class PlayerSkillHandler : MonoBehaviour
         if(_mp > 0) Skills[_mp - 1].ActiveSkill();
     }
 
-    public void ChangeStat()
+    public void ActiveSkill(int _stack)
     {
-
+        Skills[_stack - 1].ActiveSkill();
     }
 }

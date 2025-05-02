@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 
 public class PlayerCharacter : MonoBehaviour
@@ -45,13 +46,17 @@ public class PlayerCharacter : MonoBehaviour
 
     private void OnDeadPlayer()
     {
-        GameManager.Instance.ActiveParticle(EParticleType.CRASH, transform.position);
+        Instantiate(GameManager.Instance.Particles.CrashParticle, transform.position, Quaternion.identity).transform.localScale
+            = new Vector2(10.0f, 10.0f);
+        movement.Idle();
         StartCoroutine(Coroutine_DestroyPlayer());
     }
 
     IEnumerator Coroutine_DestroyPlayer()
     {
         yield return new WaitForSecondsRealtime(2.0f);
+        GameManager.Instance.GameUIEnd();
+        GameManager.Instance.UIManager_.GameResultUI_.gameObject.SetActive(true);
         GameManager.Instance.Player = null;
         Destroy(gameObject);
     }
@@ -60,10 +65,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            statHandler.AddSkillPoint();
-            statHandler.AddSkillPoint();
-            statHandler.AddSkillPoint();
-            skillHandler.ActiveSkill();
+            skillHandler.ActiveSkill(5);
         }
     }
 }

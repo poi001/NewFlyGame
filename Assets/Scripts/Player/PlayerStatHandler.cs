@@ -51,9 +51,6 @@ public class PlayerStatHandler : MonoBehaviour
     private void Dead()
     {
         OnDeath?.Invoke();
-
-        GameManager.Instance.GameUIEnd();
-        GameManager.Instance.UIManager_.GameResultUI_.gameObject.SetActive(true);
     }
 
     public void Damaged()

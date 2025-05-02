@@ -35,6 +35,22 @@ public class BuffSystem
         }
     }
 
+    public void DeleteBuff(Buff _buff)
+    {
+        // 이미 있는 버프이면 지속시간만 초기화한다.
+        foreach (Buff item in buffList)
+        {
+            if (item.Type == _buff.Type)
+            {
+                item.End();
+                return;
+            }
+        }
+
+        buffList.Add(_buff);
+        buffList[buffList.Count - 1].Start();
+    }
+
     public List<Buff> GetBuffList()
     {
         return buffList;
