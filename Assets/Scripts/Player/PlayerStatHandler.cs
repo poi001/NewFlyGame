@@ -14,6 +14,7 @@ public class PlayerStatHandler : MonoBehaviour
     public string description { get; private set; }
 
     public event Action OnDamage;               //대미지 받을 때
+    public event Action OnCrash;                //충돌됐을 때
     public event Action OnHeal;                 //회복할 때
     public event Action OnDeath;                //죽을 때
     public event Action OnChangeStat;           //스탯이 변경될 때
@@ -31,6 +32,7 @@ public class PlayerStatHandler : MonoBehaviour
     private void OnDestroy()
     {
         OnDamage = null;
+        OnCrash = null;
         OnHeal = null;
         OnDeath = null;
         OnChangeStat = null;
@@ -56,10 +58,13 @@ public class PlayerStatHandler : MonoBehaviour
     public void Damaged()
     {
         ChangeCurrentStat(EStatType.HP, statData.hp.current - 1);
-
         OnDamage?.Invoke();
-
         if (statData.hp.current == 0) Dead();
+    }
+
+    public void Crashed()
+    {
+        OnCrash?.Invoke();
     }
 
     public void Healed()

@@ -17,8 +17,9 @@ public class SoundManager : MonoBehaviour
         SFX_DOWN = 2,
         SFX_CRASH = 3,
         SFX_SKILL = 4,
-        SFX_DASH = 5,
-        SFX_SPRINT = 6
+        SFX_SKILL2 = 5,
+        SFX_DASH = 6,
+        SFX_SPRINT = 7
     }
 
     public static SoundManager Instance;

@@ -5,6 +5,7 @@ public class Skill_WeightDown : SkillBase
     {
         OnSkillSound();
         OnWeightDown();
+        character.OnVFX(PlayerCharacter.EVFXType.WEIGHTDOWN);
     }
 
     private void OnWeightDown()

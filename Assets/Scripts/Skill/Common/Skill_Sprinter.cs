@@ -11,11 +11,13 @@ public class Skill_Sprinter : SkillBase
 
         CreateBuff(EBuffType.SPRINTER, time);
         OnSprint();
+        character.OnVFX(PlayerCharacter.EVFXType.SPRINT);
     }
 
     public override void DeactiveSkill()
     {
         OffSprint();
+        character.OffVFX(PlayerCharacter.EVFXType.SPRINT);
     }
 
     private void OnSprint()

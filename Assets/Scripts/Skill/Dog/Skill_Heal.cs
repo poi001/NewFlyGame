@@ -6,11 +6,8 @@ public class Skill_Heal : SkillBase
 {
     public override void ActiveSkill()
     {
-
-    }
-
-    public override void DeactiveSkill()
-    {
-
+        stat.Healed();
+        character.OnVFX(PlayerCharacter.EVFXType.HEAL);
+        OnSkill2Sound();
     }
 }

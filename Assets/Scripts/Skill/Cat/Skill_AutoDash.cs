@@ -9,15 +9,15 @@ public class Skill_AutoDash : SkillBase
         time = 9999999.0f;
 
         CreateBuff(EBuffType.SHIELD, time);
-
-        //OnDashSound(1.0f, 1.2f);
-        stat.OnDamage += OnDamaged;
+        stat.OnCrash += OnDamaged;
+        character.OnVFX(PlayerCharacter.EVFXType.SHIELD);
+        OnSkill2Sound();
     }
 
     public override void DeactiveSkill()
     {
-        stat.OnDamage -= OnDamaged;
-        //¿Ã∆Â∆Æ ªË¡¶
+        stat.OnCrash -= OnDamaged;
+        character.OffVFX(PlayerCharacter.EVFXType.SHIELD);
     }
 
     private void OnDamaged()

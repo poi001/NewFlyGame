@@ -61,11 +61,40 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        bool shield_ = false;
+        bool armor_ = false;
+
         if (collision.gameObject.CompareTag(DefineClass.Tag_Obstacle))
         {
-            OnDamaged();
+            foreach (var skill in character.skillHandler.buffSystem.GetBuffList())
+            {
+                if (skill.Type == EBuffType.SHIELD) shield_ = true;
+                else if (skill.Type == EBuffType.SUPERARMOR) armor_ = true;
+            }
+
+            if (shield_)
+            {
+                if (armor_) Invincible(1.0f);
+                else
+                {
+                    KnockBack();
+                    Invincible(1.0f);
+                }
+            }
+            else if (armor_)
+            {
+                if(shield_) Invincible(1.0f);
+                else
+                {
+                    character.statHandler.Damaged();
+                    Invincible(1.0f);
+                }
+            }
+            else OnDamaged();
+
             GameManager.Instance.ActiveParticle(EParticleType.CRASH, gameObject.transform.position);
             SoundManager.Instance.PlaySFX(SoundManager.ESFXType.SFX_CRASH);
+            character.statHandler.Crashed();
         }
     }
 
@@ -202,22 +231,26 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDamaged()
     {
-        KnockBack(1.0f);
-
-        rb.velocity = Vector2.zero;
-        rb.AddForce(new Vector2(-5.0f, 1.0f), ForceMode2D.Impulse);
+        KnockBack();
+        Invincible(1.0f);
 
         character.statHandler.Damaged();
     }
 
-    public void KnockBack(float _time)
+    public void KnockBack()
+    {
+        rb.velocity = Vector2.zero;
+        rb.AddForce(new Vector2(-5.0f, 1.0f), ForceMode2D.Impulse);
+    }
+
+    public void Invincible(float _time)
     {
         isInvincibleMode = true;
+        invincibleTimer = _time;
 
         gameObject.layer = DefineClass.Layer_PlayerDamaged;
 
-        invincibleTimer = _time;
-        if(blinkCoroutine_ != null) StopCoroutine(blinkCoroutine_);
+        if (blinkCoroutine_ != null) StopCoroutine(blinkCoroutine_);
         blinkCoroutine_ = StartCoroutine(StartBlinkPlayer());
     }
 

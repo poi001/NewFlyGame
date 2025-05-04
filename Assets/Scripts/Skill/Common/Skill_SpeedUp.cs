@@ -5,6 +5,7 @@ public class Skill_SpeedUp : SkillBase
     {
         OnSkillSound();
         OnSpeedUp();
+        character.OnVFX(PlayerCharacter.EVFXType.SPEEDUP);
     }
 
     private void OnSpeedUp()

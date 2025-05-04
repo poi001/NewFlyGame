@@ -5,6 +5,16 @@ using static UnityEngine.ParticleSystem;
 
 public class PlayerCharacter : MonoBehaviour
 {
+    public enum EVFXType
+    {
+        SPRINT = 0,
+        WEIGHTDOWN = 1,
+        SPEEDUP = 2,
+        SHIELD = 3,
+        ARMOR = 4,
+        HEAL = 5
+    }
+
     public Animator animator { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public BoxCollider2D bc { get; private set; }
@@ -61,11 +71,16 @@ public class PlayerCharacter : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public virtual void OnVFX(EVFXType _vfxType) { }
+    public virtual void OffVFX(EVFXType _vfxType) { }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            skillHandler.ActiveSkill(5);
-        }
+        if (Input.GetKeyDown(KeyCode.Alpha1)) skillHandler.ActiveSkill(1);
+        if (Input.GetKeyDown(KeyCode.Alpha2)) skillHandler.ActiveSkill(2);
+        if (Input.GetKeyDown(KeyCode.Alpha3)) skillHandler.ActiveSkill(3);
+        if (Input.GetKeyDown(KeyCode.Alpha4)) skillHandler.ActiveSkill(4);
+        if (Input.GetKeyDown(KeyCode.Alpha5)) skillHandler.ActiveSkill(5);
+        if (Input.GetKeyDown(KeyCode.Alpha6)) skillHandler.ActiveSkill(6);
     }
 }

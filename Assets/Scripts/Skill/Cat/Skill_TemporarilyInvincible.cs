@@ -6,8 +6,9 @@ public class Skill_TemporarilyInvincible : SkillBase
 {
     public override void ActiveSkill()
     {
-        time = 5.0f;
+        time = 3.0f;
 
-        character.movement.KnockBack(3.0f);
+        character.movement.Invincible(time);
+        OnSkillSound();
     }
 }
