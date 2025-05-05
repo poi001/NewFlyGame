@@ -27,7 +27,7 @@ public class TitleBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         switch (currentType)
         {
             case EBtnType.GAMESTART:
-                GameManager.Instance.SceneManagerManager__.ChangeScene(DefineClass.Scene_SelectCharacter);
+                GameManager.Instance.SceneManager__.ChangeScene(DefineClass.Scene_SelectCharacter);
                 break;
 
             case EBtnType.RANK:

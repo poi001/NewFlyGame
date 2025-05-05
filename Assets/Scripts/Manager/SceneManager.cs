@@ -1,4 +1,5 @@
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class SceneManager_
 {
@@ -21,6 +22,7 @@ public class SceneManager_
 
             case DefineClass.Scene_Stage1:
                 {
+                    SceneManager.sceneLoaded += OnSceneLoaded_Stage1;
                     SceneManager.LoadScene(DefineClass.Scene_Stage1);
                     SoundManager.Instance.PlayBGM(SoundManager.EBGMType.BGM_STAGE1);
                 }
@@ -29,5 +31,11 @@ public class SceneManager_
             default:
                 break;
         }
+    }
+
+    private void OnSceneLoaded_Stage1(Scene scene, LoadSceneMode mode)
+    {
+        GameManager.Instance.StartStage1();
+        SceneManager.sceneLoaded -= OnSceneLoaded_Stage1;
     }
 }

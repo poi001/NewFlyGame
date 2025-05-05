@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
 
     //Object
     [Header("Player")]
-    [SerializeField] private GameObject PlayerObject;
+    public GameObject PlayerObject;
     [Header("UI")]
     [SerializeField] private GameObject UICanavas;
     public GameObject OptionsUICanavas;
@@ -66,12 +66,12 @@ public class GameManager : MonoBehaviour
     public ParticleClass Particles;
 
     public UIManager UIManager_ = new UIManager();
-    public SceneManager_ SceneManagerManager__ = new SceneManager_();
+    public SceneManager_ SceneManager__ = new SceneManager_();
 
     //temp
     private void Start()
     {
-        StartStage1();
+        //StartStage1();
     }
 
     public void StartStage1()

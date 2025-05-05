@@ -20,7 +20,7 @@ public class GameResultUI : MonoBehaviour
 
     public void OnClickMainMenu()
     {
-        GameManager.Instance.SceneManagerManager__.ChangeScene(DefineClass.Scene_ManMenu);
+        GameManager.Instance.SceneManager__.ChangeScene(DefineClass.Scene_ManMenu);
     }
 
     public void OnClickExitGame()
