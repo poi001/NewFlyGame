@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillName: SpeedUp
   Description: Your movement speed is permanently increased.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 48d89729550062d4fa6c12b975127773, type: 3}

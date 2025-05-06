@@ -10,7 +10,6 @@ public class SkillUIStruct
     public Image skillIconImage;
 }
 
-
 public class SkillUI : MonoBehaviour
 {
     [Header("Skill UI")]

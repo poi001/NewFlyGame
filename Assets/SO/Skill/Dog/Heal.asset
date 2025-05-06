@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillName: Heal
   Description: You will become invulnerable for a short time and lunge forward.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: d2dc33f1f007323448e5cdb406072cad, type: 3}

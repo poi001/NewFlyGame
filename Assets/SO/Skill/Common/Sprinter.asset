@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fab15dd8c1fee64a953e0235db97144, type: 3}
   m_Name: Sprinter
   m_EditorClassIdentifier: 
-  SkillName: Sprinter
+  SkillName: Sprint
   Description: Your movement speed will increase for a short time.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: a947b8981de81e94197b86952fb1556d, type: 3}

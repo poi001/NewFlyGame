@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillName: SuperArmor
   Description: You will become invulnerable for a short time and lunge forward.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: bb50d85b1acf9aa4e8b76b69e305f43f, type: 3}
