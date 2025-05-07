@@ -41,7 +41,11 @@ public class SkillUI : MonoBehaviour
         maxSkillNum = stat.GetMaxStat(EStatType.MP);
         currentSkillNum = maxSkillNum;
 
-        for (int i = 0; i < maxSkillNum; i++) skillImage[i].skillBackGroundImage.gameObject.SetActive(true);
+        for (int i = 0; i < maxSkillNum; i++)
+        {
+            skillImage[i].skillBackGroundImage.gameObject.SetActive(true);
+            skillImage[i].skillIconImage.sprite = player.skillHandler.SkillSOs[i].Sprite;
+        }
         ChangeImage(-1);
     }
 

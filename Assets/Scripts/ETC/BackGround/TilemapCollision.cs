@@ -19,8 +19,13 @@ public class TilemapCollision : MonoBehaviour
         //태그가 플레이어인지 검사한다.
         if(collision.gameObject.tag == DefineClass.Tag_Player)
         {
-            //충돌 지점의 월드 좌표를 얻는다.
-            Vector3 worldPosition = collision.transform.position;
+            Vector3 worldPosition;
+            Rat rat;
+            //충돌 지점의 월드 좌표를 얻는다. ( Rat은 따로 조정할 부분이 있다 )
+            if (collision.gameObject.TryGetComponent<Rat>(out rat))
+                worldPosition = rat.transform.position + new Vector3(0.0f, -0.6f, 0.0f);
+            else
+                worldPosition = collision.transform.position;
 
             //월드 좌표를 타일맵의 셀 좌표로 변환한다.
             Vector3Int tilePosition = tilemap.WorldToCell(worldPosition);

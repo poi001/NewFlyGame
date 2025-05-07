@@ -33,12 +33,16 @@ public class PlayerCharacter : MonoBehaviour
         animationData = new PlayerAnimationData();
 
         statHandler = GetComponent<PlayerStatHandler>();
-        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        bc = GetComponent<BoxCollider2D>();
         movement = GetComponent<PlayerMovement>();
-        motionTrail = GetComponent<MotionTrail>();
         skillHandler = GetComponent<PlayerSkillHandler>();
+
+        //Sprite
+        animator = GetComponent<Animator>();
+        motionTrail = GetComponent<MotionTrail>();
+
+        //Collider
+        bc = GetComponent<BoxCollider2D>();
     }
 
     protected virtual void Start()
