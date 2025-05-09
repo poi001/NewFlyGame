@@ -46,12 +46,12 @@ Unity로 제작한 2D기반의 러닝 장르의 1인 제작 게임입니다.
 <br>
 ![Image](https://github.com/user-attachments/assets/79d047c7-0b76-4d00-bbc9-11a10736da22)
 <br>
-**_Options_**에서 배경음과 효과음을 따로 조절할 수 있습니다.
+**_Options_** 에서 배경음과 효과음을 따로 조절할 수 있습니다.
 
 ### 캐릭터 선택
 ![Image](https://github.com/user-attachments/assets/63cc4ece-0224-4ad9-a02e-208129bf3ed6)
 <br>
-**_GameStart_**를 누르면 이 화면으로 넘어갑니다. 여기서는 플레이하고 싶은 캐릭터를 고를 수 있습니다.
+**_GameStart_** 를 누르면 이 화면으로 넘어갑니다. 여기서는 플레이하고 싶은 캐릭터를 고를 수 있습니다.
 <br>
 캐릭터 이미지 밑에는 각각 캐릭터마다 가지고 있는 스탯을 보여줍니다.
 
